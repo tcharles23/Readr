@@ -18,27 +18,38 @@ Once the project moves into development, the press release can be used as a touc
 
 ## Heading
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  Readr
+
 
 ## Sub-Heading
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Open domain ebook suggestions for the avid reader. 
 
 ## Summary
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  "Todays popluation is bombarded with an abundnce of choice and limited income. Reading should be accessible to all and we make it easy to pick out a book based on a custom algorithm."
+  
 
 ## Problem
   > Describe the problem your product solves.
+    Solves the issue of choice paralyses and cost of reading. 
 
 ## Solution
   > Describe how your product elegantly solves the problem.
+  We sort though open domain books to give the user a custom recomendation. 
 
 ## Quote from You
   > A quote from a spokesperson in your company.
+  "Find your perfect book match for free."
 
 ## How to Get Started
   > Describe how easy it is to get started.
+  "Sign in with google and fill our our short questionare for custom recommendations."
 
 ## Customer Quote
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "This app is 10 out of 10! This app is simple and smart" 
 
 ## Closing and Call to Action
   > Wrap it up and give pointers where the reader should go next.
+  "Readr will fit in your pocket and save you time and money on your next book adventure."
