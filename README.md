@@ -1,6 +1,19 @@
 # Readr
-Find your perfect book match, for free
+Find your perfect book match, for free with Readr.
 
+#### The tech stack for this app: 
+
+- External API(s) - [Google Books](https://developers.google.com/books) (possibly Open Library for epub text)
+- Frontend Framework - React
+- Styling Library - Material UI
+- Server Framework - Express
+- Database - PostgreSQL - (for speed over mySQL) Sequelize ORM
+- Authentication - OAuth -> Google
+- Deployment Platform - Digital Ocean
+- Testing Framework - Mocha Chai
+- Project Management Tool - GitHub Projects
+
+#### User Experience
 
 * A user logs in with third-party authenication from Google.
 * The first time a user logs in, they will be prompted for their name, DOB and a short questionare. 
@@ -12,7 +25,7 @@ Find your perfect book match, for free
 * #### If the user clicks "yes":
     - The book will be added to their "To-Read" list.
     - The next book suggestion will appear. 
- * #### If the user clicks "no":
+* #### If the user clicks "no":
     - The book will be added to their "Not interested" list. 
     - The next book suggestion will appear. 
 * #### If the user clicks "Read Now":
@@ -41,3 +54,11 @@ Find your perfect book match, for free
 
 
 #### Database
+This app uses PostgreSQL 
+* Schema 
+    * Users table with ID, username
+    * Books table with ISBN#, Title, Author, Description, thumbnail Cover image, book url
+    * Join table to populate users To-Read list with unique User ID, ISBN#, and Boolean
+    * Join table to show relationship between users/followers  
+
+
