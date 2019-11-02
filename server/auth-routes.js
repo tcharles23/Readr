@@ -22,6 +22,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // access current user through req.user
   // redirect to post login page
+  res.redirect('/readr');
   res.send('you reached the callback URI');
 });
 
