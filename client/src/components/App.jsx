@@ -1,4 +1,6 @@
 import React from 'react';
+import Login from './Login.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -12,6 +14,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1> Hello fellow mortals! </h1>
+        <div>
+          <Login />
+        </div>
       </div>
     );
   }
