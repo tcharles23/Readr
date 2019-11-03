@@ -2,21 +2,20 @@
 */
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
-const Login = () => (
-  <Container component="main" maxWidth="xs">
-    <CssBaseline />
+const Login = (props) => {
+  console.log(props);
+  return (
     <Button
       type="submit"
       fullWidth
       variant="contained"
       color="primary"
+      onClick={() => props.handleLogin()}
     >
-        Sign In
+      Sign In
     </Button>
-  </Container>
-);
+  );
+};
 
 export default Login;

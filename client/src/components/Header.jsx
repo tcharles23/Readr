@@ -4,14 +4,11 @@
  */
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { NavLink } from "react-router-dom";
 
 function Header() {
-    return (
-       <nav />
-    );
+  return (
+    <div>Header</div>
+  );
 }
 
 export default Header;

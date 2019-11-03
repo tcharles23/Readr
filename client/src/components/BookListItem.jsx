@@ -5,11 +5,10 @@
 import React from 'react';
 
 function BookListItem() {
-    return (
-        <div>
-
-        </div>
-    );
+  return (
+    <div>
+    </div>
+  );
 }
 
 export default BookListItem;

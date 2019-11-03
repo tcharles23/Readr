@@ -4,11 +4,46 @@
  * choices above. The user should not see a book they have already said yes or no to.
  */
 import React from 'react';
+import Container from '@material-ui/core/Container';
+import SuggestionButtons from './SuggestionButtons.jsx';
 
-function SuggestionView() {
-  return (
-    <div />
-  );
+class SuggestionView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+    this.handleYesClick = this.handleYesClick.bind(this);
+    this.handleNoClick = this.handleNoClick.bind(this);
+    this.handleReadNowClick = this.handleReadNowClick.bind(this);
+  }
+
+  handleYesClick() {
+    console.log('Clicked Yes');
+  }
+
+  handleNoClick() {
+    console.log('Clicked No');
+  }
+
+  handleReadNowClick() {
+    console.log('Clicked Read Now!');
+  }
+
+  render() {
+    return (
+      <div>
+        BOOK SUGGESTION HERE
+        <br />
+        <div>
+          <SuggestionButtons
+            handleNoClick={this.handleNoClick}
+            handleYesClick={this.handleYesClick}
+            handleReadNowClick={this.handleReadNowClick}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default SuggestionView;
