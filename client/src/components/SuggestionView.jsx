@@ -56,8 +56,11 @@ class SuggestionView extends React.Component {
         <div>
           <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
         </div>
-        <div><b>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle}</b></div>
-        <div>{bookSuggestion.volumeInfo.description}</div>
+        <div><h3>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle || null}</h3>
+          <b>{bookSuggestion.volumeInfo.authors || null}</b>
+        </div>
+        {/* some books do not have descriptons so we'll use text snippet */}
+        <div>{bookSuggestion.volumeInfo.description || bookSuggestion.searchInfo.textSnippet || null}</div>
         <br />
         <div>
           <SuggestionButtons
