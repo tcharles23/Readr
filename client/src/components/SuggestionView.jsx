@@ -4,7 +4,6 @@
  * choices above. The user should not see a book they have already said yes or no to.
  */
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import SuggestionButtons from './SuggestionButtons.jsx';
 
 class SuggestionView extends React.Component {
@@ -15,14 +14,21 @@ class SuggestionView extends React.Component {
     this.handleYesClick = this.handleYesClick.bind(this);
     this.handleNoClick = this.handleNoClick.bind(this);
     this.handleReadNowClick = this.handleReadNowClick.bind(this);
+    this.getBookSuggestion = props.getBookSuggestion;
+  }
+
+  /* this should add the book to the logged in users "to-read" list
+  * by sending a patch request to the database to input the isbn and "true"
+  */
+  handleNoClick() {
+    console.log('Clicked No');
+    this.getBookSuggestion();
   }
 
   handleYesClick() {
     console.log('Clicked Yes');
-  }
-
-  handleNoClick() {
-    console.log('Clicked No');
+    // calls the function from App that sends request to server for google API 
+    this.getBookSuggestion();
   }
 
   handleReadNowClick() {
