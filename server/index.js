@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 const passport = require('passport');
-const cookieSession = require('cookie-session');
-const passportSetup = require('../config/passport-setup');
+require('../config/passport-setup');
 
+const cookieSession = require('cookie-session');
 const authRoutes = require('./auth-routes');
 const readrRoutes = require('./readr-routes');
 
@@ -16,7 +16,7 @@ const app = express();
 // initialize cookie session
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000, // 1 day in ms
-  keys: [process.env.cookieKey],
+  keys: [process.env.cookieKey || 'cookieKey'],
 }));
 
 // initialize passport

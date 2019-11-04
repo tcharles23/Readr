@@ -11,7 +11,9 @@ router.get('/login', (req, res) => {
 // auth logout
 router.get('/logout', (req, res) => {
   // handle with passport
-  res.send('logging out');
+  req.logout();
+  // res.send('logging out');
+  res.redirect('/auth/login');
 });
 
 // auth with google
@@ -25,7 +27,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   // access current user through req.user
   // redirect to post login page
   res.redirect('/readr');
-  res.send('you reached the callback URI');
+  // res.send('you reached the callback URI');
 });
 
 module.exports = router;
