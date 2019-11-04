@@ -37,9 +37,11 @@ class App extends React.Component {
   // --------handles what happens after the user clicks Login
   handleLogin() {
     this.setState({ isLoggedIn: true });
+    this.getBookSuggestion();
   }
 
   render() {
+    const { bookSuggestion } = this.state;
     const { isLoggedIn } = this.state;
     return (
       <div className="App">
@@ -56,7 +58,10 @@ class App extends React.Component {
               <header>
                 <Header />
               </header>
-              <SuggestionView getBookSuggestion={this.getBookSuggestion} />
+              <SuggestionView
+                getBookSuggestion={this.getBookSuggestion}
+                bookSuggestion={bookSuggestion}
+              />
             </div>
           ) : null }
         </Container>

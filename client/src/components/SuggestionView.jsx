@@ -10,6 +10,8 @@ class SuggestionView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // this inherits the first book suggestion from the first app load and gets reset with each click
+      bookSuggestion: props.bookSuggestion,
     };
     this.handleYesClick = this.handleYesClick.bind(this);
     this.handleNoClick = this.handleNoClick.bind(this);
@@ -17,18 +19,30 @@ class SuggestionView extends React.Component {
     this.getBookSuggestion = props.getBookSuggestion;
   }
 
-  /* this should add the book to the logged in users "to-read" list
-  * by sending a patch request to the database to input the isbn and "true"
+  // allows more DRY code by not having this repeat inside the handleClicks
+  newBookSuggestion() {
+    this.getBookSuggestion();
+    // .then((book) => {
+    //   this.setState({ bookSuggestion: book });
+    // });
+  }
+
+  /* Adds book to the logged in users "not interested" list by
+  * sending a update request to the database.
+  * Show the next book suggestion.
   */
   handleNoClick() {
     console.log('Clicked No');
-    this.getBookSuggestion();
+    this.newBookSuggestion();
   }
 
+  /* Adds book to the logged in users "to-read" list by
+  * sending a update request to the database.
+  * Show the next book suggestion.
+  */
   handleYesClick() {
     console.log('Clicked Yes');
-    // calls the function from App that sends request to server for google API 
-    this.getBookSuggestion();
+    this.newBookSuggestion();
   }
 
   handleReadNowClick() {
@@ -36,9 +50,14 @@ class SuggestionView extends React.Component {
   }
 
   render() {
+    const { bookSuggestion } = this.state;
     return (
       <div>
-        BOOK SUGGESTION HERE
+        <div>
+          <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
+        </div>
+        <div><b>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle}</b></div>
+        <div>{bookSuggestion.volumeInfo.description}</div>
         <br />
         <div>
           <SuggestionButtons
