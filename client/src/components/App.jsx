@@ -20,6 +20,10 @@ class App extends React.Component {
     this.setState({ isLoggedIn: true });
   }
 
+  getBookSuggestions() {
+    
+  }
+
   render() {
     const { isLoggedIn } = this.state;
     return (
