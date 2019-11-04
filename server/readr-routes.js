@@ -1,3 +1,5 @@
+// Express router for all main features of the Readr app
+
 const router = require('express').Router();
 
 router.get('/', (req, res) => {

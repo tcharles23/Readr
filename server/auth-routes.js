@@ -1,3 +1,5 @@
+// Express router for all authentication with passport
+
 const router = require('express').Router();
 const passport = require('passport');
 
