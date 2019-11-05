@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import Login from './Login.jsx';
-import Header from './Header.jsx'
+import NavBar from './NavBar.jsx';
 import SuggestionView from './SuggestionView.jsx';
 import testBook from './TestBook';
+import Main from './Main.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -56,8 +57,10 @@ class App extends React.Component {
           {isLoggedIn ? (
             <div>
               <header>
-                <Header />
+                <NavBar />
               </header>
+              <Main />
+              <br />
               <SuggestionView
                 getBookSuggestion={this.getBookSuggestion}
                 bookSuggestion={bookSuggestion}

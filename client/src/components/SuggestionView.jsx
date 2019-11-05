@@ -4,7 +4,9 @@
  * choices above. The user should not see a book they have already said yes or no to.
  */
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
 import SuggestionButtons from './SuggestionButtons.jsx';
+
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -54,13 +56,18 @@ class SuggestionView extends React.Component {
     return (
       <div>
         <div>
-          <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
+          <Grid container justify="center">
+            <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
+          </Grid>
         </div>
-        <div><h3>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle || null}</h3>
+        <div>
+          <h3>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle || null}</h3>
           <b>{bookSuggestion.volumeInfo.authors || null}</b>
         </div>
         {/* some books do not have descriptons so we'll use text snippet */}
-        <div>{bookSuggestion.volumeInfo.description || bookSuggestion.searchInfo.textSnippet || null}</div>
+        <div>
+          {bookSuggestion.volumeInfo.description || bookSuggestion.searchInfo.textSnippet || null}
+        </div>
         <br />
         <div>
           <SuggestionButtons
