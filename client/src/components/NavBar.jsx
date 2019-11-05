@@ -4,11 +4,12 @@
  */
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import TypoGraphy from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 
+// This allows custom styling of the links, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
   link: {
     margin: theme.spacing(1),
@@ -23,8 +24,8 @@ const NavBar = () => {
     <div>
       <AppBar color="primary" position="static">
         <Toolbar>
-          <TypoGraphy color="inherit" variant="h6" margin="10">
-            Welcome Bookworm!
+          <TypoGraphy variant="h6" style={{ flex: 1 }}>
+            Welcome!
           </TypoGraphy>
           <TypoGraphy>
             <Link href="./App.jsx" onClick={preventDefault} className={classes.link}>

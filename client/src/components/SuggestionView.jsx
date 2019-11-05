@@ -4,7 +4,7 @@
  * choices above. The user should not see a book they have already said yes or no to.
  */
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import { Typography } from '@material-ui/core';
 import SuggestionButtons from './SuggestionButtons.jsx';
 
 
@@ -55,19 +55,22 @@ class SuggestionView extends React.Component {
     const { bookSuggestion } = this.state;
     return (
       <div>
-        <div>
-          <Grid container justify="center">
-            <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
-          </Grid>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        >
+          <img src={bookSuggestion.volumeInfo.imageLinks.thumbnail} alt="Smiley face" />
         </div>
-        <div>
-          <h3>{bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle || null}</h3>
-          <b>{bookSuggestion.volumeInfo.authors || null}</b>
-        </div>
-        {/* some books do not have descriptons so we'll use text snippet */}
-        <div>
+        <Typography variant="h6">
+          {bookSuggestion.volumeInfo.title}: {bookSuggestion.volumeInfo.subtitle || null}
+        </Typography>
+        <Typography variant="subtitle1">{bookSuggestion.volumeInfo.authors || null} </Typography>
+        <Typography variant="caption">
+          {/* some books do not have descriptons so we'll use text snippet */}
           {bookSuggestion.volumeInfo.description || bookSuggestion.searchInfo.textSnippet || null}
-        </div>
+        </Typography>
         <br />
         <div>
           <SuggestionButtons
