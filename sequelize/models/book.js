@@ -1,7 +1,8 @@
-/* eslint-disable func-names */
+const models = require('../models');
+
 const books = (sequelize, Sequelize) => {
   // creating the table for the books api informations
-  const Books = sequelize.define('user', {
+  const Books = sequelize.define('Books', {
     ISBN: {
       type: Sequelize.STRING,
       unique: true,
@@ -24,6 +25,10 @@ const books = (sequelize, Sequelize) => {
       unique: true,
     },
   });
+
+  // creating a field called id that refrence id from the Books table
+  Books.belongsToMany(models.readlist);
+
 
   return Books;
 };

@@ -4,8 +4,9 @@ const Sequelize = require('sequelize');
 const { user } = require('./userLogin');
 const { books } = require('./book');
 const { readList } = require('./ReadList');
-const { sequelize } = require('../db');
 require('dotenv').config();
+
+const sequelize = new Sequelize('readrs', 'cheap_readers', 'READRSARELEADERS2020', { dialect: 'postgres' });
 
 
 const models = {
@@ -30,7 +31,7 @@ Object.keys(models).forEach((modelName) => {
   }
 });
 
-module.sequelize = sequelize;
+module.exports.sequelize = sequelize;
 module.Sequelize = Sequelize;
 
-module.exports = models;
+module.exports.models = models;
