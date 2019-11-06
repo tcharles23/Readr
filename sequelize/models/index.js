@@ -6,6 +6,7 @@ const Sequelize = require('sequelize');
 // const { db } = require('../db');
 require('dotenv').config();
 
+// need to add this so I can create a pull request for this spefic file
 
 const {
   DATABASE,
