@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
-  const preventDefault = (event) => event.preventDefault();
   return (
     <div>
       <AppBar color="primary" position="static">
