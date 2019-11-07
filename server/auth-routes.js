@@ -3,9 +3,13 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-// auth login
-router.get('/login', (req, res) => {
-  res.send('logging in');
+// auth user to verify if user is logged in for client
+router.get('/user', (req, res) => {
+  if (req.user) {
+    res.json({ user: req.user });
+  } else {
+    res.send({ user: null });
+  }
 });
 
 // auth logout

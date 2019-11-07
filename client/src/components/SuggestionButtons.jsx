@@ -12,15 +12,16 @@ function SuggestionButtons(props) {
   const classes = useStyles();
   return (
     <div>
-      <div>
-        <Button variant="contained" color="primary" className={classes.button} onClick={() => props.handleNoClick()}>
+      {/* centers the "not interested" and "interested" buttons */}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Button variant="contained" size="large" color="default" className={classes.button} onClick={() => props.handleNoClick()}>
         Not Interested
         </Button>
-        <Button variant="contained" color="secondary" className={classes.button} onClick={() => props.handleYesClick()}>
+        <Button variant="contained" size="large" color="primary" className={classes.button} onClick={() => props.handleYesClick()}>
         Interested
         </Button>
       </div>
-      <Button type="submit" variant="contained" fullWidth color="default" className={classes.button} onClick={() => props.handleReadNowClick()}>
+      <Button type="submit" variant="contained" fullWidth color="inherit" className={classes.button} onClick={() => props.handleReadNowClick()}>
         Read Now
       </Button>
     </div>
