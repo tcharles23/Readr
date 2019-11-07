@@ -30,7 +30,7 @@ const User = db.define('user', {
 });
 
 // creating the table for the books api informations
-const Books = db.define('books', {
+const Book = db.define('book', {
   isbn: {
     type: Sequelize.STRING,
     unique: true,
@@ -40,7 +40,7 @@ const Books = db.define('books', {
     unique: true,
   },
   author: Sequelize.STRING,
-  desc: {
+  description: {
     type: Sequelize.STRING,
     unique: true,
   },
@@ -55,8 +55,8 @@ const Books = db.define('books', {
 });
 
 // creating the field on the table
-const FollowList = db.define('followList', {
-  id: {
+const UserFollower = db.define('user_follower', {
+  userID: {
     type: Sequelize.INTEGER,
     // `references: {
     //   model: 'user',
@@ -64,7 +64,7 @@ const FollowList = db.define('followList', {
     // },`
     primaryKey: true,
   },
-  followers: {
+  followerID: {
     type: Sequelize.INTEGER,
     // references: {
     //   model: 'user',
@@ -73,11 +73,15 @@ const FollowList = db.define('followList', {
   },
 });
 
+const UserBlocked = db.define('user_blocked', {
+  userID: Sequelize.INTEGER, // User ID
+  blockedID: Sequelize.INTEGER, // ID of user blocked by User ID
+});
+
 
 // creating the fields on the table
-const ReadList = db.define('readList', {
-  boolean: Sequelize.BOOLEAN,
-  id: {
+const UserBook = db.define('user_book', {
+  userID: {
     type: Sequelize.INTEGER,
     // references: {
     //   model: 'user',
@@ -93,13 +97,24 @@ const ReadList = db.define('readList', {
     // },
     unique: true,
   },
+  is_interested: Sequelize.BOOLEAN,
 });
+
+const UserPreference = db.define('user_preference', {
+  userID: Sequelize.INTEGER,
+  comedy: Sequelize.FLOAT,
+  thriller: Sequelize.FLOAT,
+  fantasy: Sequelize.FLOAT,
+  romance: Sequelize.FLOAT,
+})
 
 db.sync().then(() => {
   console.log('connected to database');
 }).catch((err) => { console.log(err); });
 
-module.exports.ReadList = ReadList;
 module.exports.User = User;
-module.exports.Books = Books;
-module.exports.FollowList = FollowList;
+module.exports.Book = Book;
+module.exports.UserFollower = UserFollower;
+module.exports.UserBlocked = UserBlocked;
+module.exports.UserBook = UserBook;
+module.exports.UserPreference = UserPreference;
