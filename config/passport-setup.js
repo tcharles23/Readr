@@ -3,7 +3,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 require('dotenv').config();
-const { User } = require('../server/db/index'); // FIXME: add proper end path when user model created
+const { User } = require('../sequelize/index'); // FIXME: add proper end path when user model created
 
 // get information from user to create cookie to send to browser
 passport.serializeUser((user, next) => {
