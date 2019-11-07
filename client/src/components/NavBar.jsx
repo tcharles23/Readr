@@ -28,13 +28,13 @@ const NavBar = () => {
             Welcome!
           </TypoGraphy>
           <TypoGraphy>
-            <Link href="./App.jsx" onClick={preventDefault} className={classes.link}>
+            <Link href="./App.jsx" className={classes.link}>
               Explore Books
             </Link>
-            <Link href="./BookListView.jsx" onClick={preventDefault} className={classes.link}>
+            <Link href="./BookListView.jsx" className={classes.link}>
               To-Read
             </Link>
-            <Link href="/" onClick={preventDefault} className={classes.link}>
+            <Link href="/auth/logout" className={classes.link}>
               Logout
             </Link>
           </TypoGraphy>
