@@ -6,7 +6,7 @@ const { categorySearch, selectCategory, selectBook } = require('./suggestion');
 const authCheck = (req, res, next) => {
   if (!req.user) {
     // if user is not logged in
-    res.redirect('/auth/login');
+    res.redirect('/');
   } else {
     next();
   }

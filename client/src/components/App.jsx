@@ -8,11 +8,17 @@ import SuggestionView from './SuggestionView.jsx';
 import testBook from './TestBook';
 
 class App extends React.Component {
+  // --------handles what happens after the user clicks Login
+  static handleLogin() {
+    window.open('/auth/google', '_self');
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       isLoggedIn: false,
       bookSuggestion: testBook,
+      user: null,
     };
 
     this.handleLogin = this.handleLogin.bind(this);
@@ -26,6 +32,24 @@ class App extends React.Component {
   * the user's database. Send back the first item in the Query to Googls API
   * */
 
+  componentDidMount() {
+    axios.get('/auth/user').then((response) => {
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('THERE IS A USER');
+        this.setState({
+          isLoggedIn: true,
+          user: response.data.user,
+        })
+      } else {
+        this.setState({
+          isLoggedIn: false,
+          user: null,
+        });
+      }
+    });
+  };
+
   getBookSuggestion() {
     // return axios.get('/book').then((retrievedBook) => {
     //   return retrievedBook;
@@ -33,12 +57,6 @@ class App extends React.Component {
 
     const { bookSuggestion } = this.state;
     return bookSuggestion;
-  }
-
-  // --------handles what happens after the user clicks Login
-  handleLogin() {
-    this.setState({ isLoggedIn: true });
-    this.getBookSuggestion();
   }
 
   render() {
