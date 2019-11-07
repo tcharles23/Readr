@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 require('dotenv').config();
 
-// need to add this so I can create a 
+// need to add this so I can create a
 // pull requests for this spefic file
 
 const {
@@ -24,14 +24,14 @@ const db = new Sequelize({
 });
 
 // creating the table for the user
-const user = db.define('user', {
+const User = db.define('user', {
   username: Sequelize.STRING,
   googleId: Sequelize.STRING,
 });
 
 // creating the table for the books api informations
-const books = db.define('books', {
-  ISBN: {
+const Books = db.define('books', {
+  isbn: {
     type: Sequelize.STRING,
     unique: true,
   },
@@ -39,8 +39,8 @@ const books = db.define('books', {
     type: Sequelize.STRING,
     unique: true,
   },
-  Author: Sequelize.STRING,
-  Desc: {
+  author: Sequelize.STRING,
+  desc: {
     type: Sequelize.STRING,
     unique: true,
   },
@@ -55,7 +55,7 @@ const books = db.define('books', {
 });
 
 // creating the field on the table
-const followList = db.define('followList', {
+const FollowList = db.define('followList', {
   id: {
     type: Sequelize.INTEGER,
     // `references: {
@@ -75,7 +75,7 @@ const followList = db.define('followList', {
 
 
 // creating the fields on the table
-const readList = db.define('readList', {
+const ReadList = db.define('readList', {
   boolean: Sequelize.BOOLEAN,
   id: {
     type: Sequelize.INTEGER,
@@ -98,3 +98,8 @@ const readList = db.define('readList', {
 db.sync().then(() => {
   console.log('connected to database');
 }).catch((err) => { console.log(err); });
+
+module.exports.ReadList = ReadList;
+module.exports.User = User;
+module.exports.Books = Books;
+module.exports.FollowList = FollowList;
