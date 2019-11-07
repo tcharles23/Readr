@@ -9,9 +9,6 @@ import testBook from './TestBook';
 
 class App extends React.Component {
   // --------handles what happens after the user clicks Login
-  static handleLogin() {
-    window.open('/auth/google', '_self');
-  }
 
   constructor(props) {
     super(props);
@@ -21,7 +18,6 @@ class App extends React.Component {
       user: null,
     };
 
-    this.handleLogin = this.handleLogin.bind(this);
     this.getBookSuggestion = this.getBookSuggestion.bind(this);
   }
 
@@ -34,13 +30,13 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/auth/user').then((response) => {
-      console.log(response.data)
+      console.log(response.data);
       if (response.data.user) {
         console.log('THERE IS A USER');
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
-        })
+        });
       } else {
         this.setState({
           isLoggedIn: false,
@@ -48,7 +44,7 @@ class App extends React.Component {
         });
       }
     });
-  };
+  }
 
   getBookSuggestion() {
     // return axios.get('/book').then((retrievedBook) => {
@@ -69,7 +65,7 @@ class App extends React.Component {
           <TypoGraphy variant="h2"> Readr </TypoGraphy>
           <div>
             {isLoggedIn === false ? (
-              <Login handleLogin={this.handleLogin} />) : null }
+              <Login />) : null }
           </div>
           {/* conditional rendering of the components based on if the user is logged in */}
           {isLoggedIn ? (
