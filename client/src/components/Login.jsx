@@ -11,7 +11,7 @@ const Login = (props) => {
       fullWidth
       variant="contained"
       color="primary"
-      onClick={() => props.handleLogin()}
+      onClick={() => window.open('/auth/google', '_self')}
     >
       Sign In
     </Button>
