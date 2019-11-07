@@ -1,30 +1,36 @@
 const Sequelize = require('sequelize');
-// const { user } = require('./user');
-// const { books } = require('./book');
-// const { readList } = require('./ReadList');
-// const { followList } = require('./followList');
-// const { db } = require('../db');
+
 require('dotenv').config();
 
-// need to add this so I can create a pull request for this spefic file
+// need to add this so I can create a 
+// pull requests for this spefic file
 
 const {
   DATABASE,
+  USER_NAME,
+  USER_PASSWORD,
   HOST,
   DB_PORT,
 } = process.env;
 
-const db = new Sequelize(DATABASE, "macbook", "Terefe",
-  {
-    host: HOST,
-    port: DB_PORT,
-    dialect: 'postgres',
-    logging: false,
-  });
+const db = new Sequelize({
+  database: DATABASE,
+  username: USER_NAME,
+  password: USER_PASSWORD,
+  host: HOST,
+  port: DB_PORT,
+  dialect: 'postgres',
+  logging: false,
+});
 
+// creating the table for the user
+const user = db.define('user', {
+  username: Sequelize.STRING,
+  googleId: Sequelize.STRING,
+});
 
 // creating the table for the books api informations
-const books = db.define("books", {
+const books = db.define('books', {
   ISBN: {
     type: Sequelize.STRING,
     unique: true,
@@ -48,8 +54,8 @@ const books = db.define("books", {
   },
 });
 
-// creating the fields on the table
-const followList = db.define("followList", {
+// creating the field on the table
+const followList = db.define('followList', {
   id: {
     type: Sequelize.INTEGER,
     // `references: {
@@ -67,14 +73,9 @@ const followList = db.define("followList", {
   },
 });
 
-// creating the table for the user
-const user = db.define("user", {
-  username: Sequelize.STRING,
-  googleId: Sequelize.STRING,
-});
 
 // creating the fields on the table
-const readList = db.define("readList", {
+const readList = db.define('readList', {
   boolean: Sequelize.BOOLEAN,
   id: {
     type: Sequelize.INTEGER,
@@ -96,22 +97,4 @@ const readList = db.define("readList", {
 
 db.sync().then(() => {
   console.log('connected to database');
-})
-
-
-// module.exports.db = db;
-// module.exports.user = user;
-// module.exports.books = books;
-// module.exports.readList = readList;
-// module.exports.followList = followList;
-// const models = {
-//   user,
-//   books,
-//   readList,
-//   followList,
-// };
-
-// models.user.sync();
-// models.books.sync();
-// models.readList.sync();
-// models.followList.sync();
+}).catch((err) => { console.log(err); });
