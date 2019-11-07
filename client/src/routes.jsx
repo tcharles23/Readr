@@ -27,6 +27,7 @@ const Routes = () => {
         <Route exact path="/readr/suggestion" component={SuggestionView} />
         <Route exact path="/readr/toread" component={BookListView} />
         <Route exact path="/readr/readnow" component={ReaderView} />
+        <Route exact path="/logout" component={Login} />
         {/* // this is our default route */}
         <Route component={NotFound} />
       </Switch>
