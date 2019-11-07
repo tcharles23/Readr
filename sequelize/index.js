@@ -108,7 +108,7 @@ const UserPreference = db.define('user_preference', {
   romance: Sequelize.FLOAT,
 })
 
-db.sync().then(() => {
+db.sync({ force: true }).then(() => {
   console.log('connected to database');
 }).catch((err) => { console.log(err); });
 
