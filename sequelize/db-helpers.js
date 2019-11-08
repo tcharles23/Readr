@@ -61,14 +61,15 @@ const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
 
 // update the user's interest in a book. Update takes two parameters -
 // first one is values which will be used to perform the update, and second one is options
-const changeUserInterest = (userID, isbn, toRead) => models.UserBook.update(
-  { is_interested: toRead },
-  {
-    where: {
-      userID,
-      isbn,
-    },
-  });
+const changeUserInterest = (userID, isbn, toRead) => models.UserBook.update({
+  is_interested: toRead,
+},
+{
+  where: {
+    userID,
+    isbn,
+  },
+});
 
 module.exports.insertBook = insertBook;
 module.exports.findBook = findBook;
