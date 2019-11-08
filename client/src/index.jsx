@@ -6,6 +6,7 @@ import App from './components/App.jsx';
 import SuggestionView from './components/SuggestionView.jsx';
 import BookListView from './components/BookListView.jsx';
 import ReaderView from './components/ReaderView.jsx';
+import Following from './components/FollowingView.jsx';
 import NotFound from './components/NotFound.jsx';
 
 
@@ -18,7 +19,7 @@ ReactDOM.render(
         <Switch>
           {/* // this is our default route */}
           <Route exact path="/" component={App} />
-          <Route exact path="/suggestion" component={SuggestionView} />
+          <Route exact path="/following" component={Following} />
           <Route exact path="/toread" component={BookListView} />
           <Route exact path="/readnow" component={ReaderView} />
           {/* // if noroute exists */}

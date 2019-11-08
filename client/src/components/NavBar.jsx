@@ -34,6 +34,9 @@ const NavBar = () => {
             <Link to="/toread" className={classes.link}>
               To-Read
             </Link>
+            <Link to="/following" className={classes.link}>
+              Following
+            </Link>
             {/* This directs to passport auth logout */}
             <a href="/auth/logout" className={classes.link}>Logout</a>
           </TypoGraphy>
