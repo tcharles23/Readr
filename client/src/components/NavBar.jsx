@@ -28,7 +28,7 @@ const NavBar = () => {
             Welcome!
           </TypoGraphy>
           <TypoGraphy>
-            <Link to="/" className={classes.link}>
+            <Link to="/suggestion" className={classes.link}>
               Explore Books
             </Link>
             <Link to="/toread" className={classes.link}>
