@@ -59,7 +59,7 @@ const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
   is_interested: toRead,
 });
 
-// update the user's interest in a book - update takes two parameters -
+// update the user's interest in a book. Update takes two parameters -
 // first one is values which will be used to perform the update, and second one is options
 const changeUserInterest = (userID, isbn, toRead) => models.UserBook.update(
   { is_interested: toRead },
