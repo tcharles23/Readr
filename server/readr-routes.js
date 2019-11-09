@@ -19,7 +19,7 @@ const authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req, res) => {
-  console.log(req.user.id);
+  // console.log(req.user.id);
   res.send(`you are logged in as: ${req.user.username}`);
 });
 
@@ -48,7 +48,8 @@ router.get('/suggestion', (req, res) => {
       return dbHelpers.insertBook(book);
       // res.send(JSON.stringify(book));
     })
-    .then(() => res.send(JSON.stringify(book)));
+    .then(() => res.send(JSON.stringify(book)))
+    .catch((error) => console.log(error));
 });
 
 router.post('/interest', (req, res) => {
@@ -60,10 +61,14 @@ router.post('/interest', (req, res) => {
     .catch((error) => console.log(error));
 });
 
-router.get('/booklist', (req, res) => {
+router.post('/booklist', (req, res) => {
   const { userID, toRead } = req.body;
+  console.log("booklist: server side")
   dbHelpers.userBookList(userID, toRead)
-    .then((bookList) => res.send(bookList))
+    .then((bookList) => {
+      console.log(bookList);
+      res.send(bookList);
+    })
     .catch((error) => console.log(error));
 });
 module.exports = router;

@@ -11,7 +11,6 @@ class BookListView extends React.Component {
     super(props);
     this.state = {
       bookList: null,
-      userID: props.user.id,
     };
 
     this.getUserBookList = this.getUserBookList.bind(this);
@@ -23,15 +22,16 @@ class BookListView extends React.Component {
 
   // Request to server to get a new book suggestion
   getUserBookList() {
-    const { userID } = this.state;
-    console.log(userID);
-    return axios.get('/readr/booklist', {
-      userID,
+    const { user } = this.props;
+    return axios.post('/readr/booklist', {
+      userID: user.id,
       toRead: true,
     })
       .then((books) => {
+        console.log(books.data);
         this.setState({ bookList: books.data });
-      });
+      })
+      .catch((error) => console.log(error));
   }
 
 
@@ -54,7 +54,7 @@ class BookListView extends React.Component {
         ) : (
           <div>
             {/* mapp over each item in book list and display */}
-            {Object.values(bookList)}
+            {"BOOKS LIST HERE"}
           </div>
         )}
       </div>
