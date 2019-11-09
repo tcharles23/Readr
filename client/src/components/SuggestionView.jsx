@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import axios from 'axios';
-import { Typography } from '@material-ui/core';
+import { Typography, CircularProgress } from '@material-ui/core';
 import SuggestionButtons from './SuggestionButtons.jsx';
 import testBook from './TestBook';
 
@@ -83,7 +83,7 @@ class SuggestionView extends React.Component {
     const { bookSuggestion } = this.state;
     return (
       <div>
-        {bookSuggestion === null ? (<div> loading suggestion ... </div>) : (
+        {bookSuggestion === null ? (<div align="center"><CircularProgress /></div>) : (
           <div>
             <div style={{
               display: 'flex',
