@@ -24,6 +24,7 @@ class BookListView extends React.Component {
   // Request to server to get a new book suggestion
   getUserBookList() {
     const { userID } = this.state;
+    console.log(userID);
     return axios.get('/readr/booklist', {
       userID,
       toRead: true,
@@ -55,7 +56,7 @@ class BookListView extends React.Component {
             {/* mapp over each item in book list and display */}
             {Object.values(bookList)}
           </div>
-        )};
+        )}
       </div>
     );
   }

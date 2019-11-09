@@ -52,8 +52,8 @@ router.get('/suggestion', (req, res) => {
 });
 
 router.post('/interest', (req, res) => {
-  // console.log(req);
-  dbHelpers.createUserBook(req.body)
+  const { userID, isbn, toRead } = req.body;
+  dbHelpers.createUserBook(userID, isbn, toRead)
     .then(() => {
       res.status(200).send('book added to user list');
     })
@@ -61,8 +61,8 @@ router.post('/interest', (req, res) => {
 });
 
 router.get('/booklist', (req, res) => {
-  console.log(req);
-  dbHelpers.userBookList(req.body)
+  const { userID, toRead } = req.body;
+  dbHelpers.userBookList(userID, toRead)
     .then((bookList) => res.send(bookList))
     .catch((error) => console.log(error));
 });
