@@ -24,6 +24,7 @@ router.get('/', authCheck, (req, res) => {
 });
 
 router.get('/suggestion', (req, res) => {
+  const { user } = req;
   // TODO: Get users personalized data as userPref
   // Select random category from user's personalized data
   const userPref = { comedy: 0.74, romance: 0.54, thriller: 0.21 }; // FIXME: temp data
@@ -40,7 +41,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      console.log(bookInfo);
+      // console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
@@ -49,6 +50,42 @@ router.get('/suggestion', (req, res) => {
       // res.send(JSON.stringify(book));
     })
     .then(() => res.send(JSON.stringify(book)));
+});
+
+// Endpoint to return list of followers
+router.get('/followers', (req, res) => {
+  const { user } = req;
+  dbHelpers.getFollowers(user.id)
+    .then((followers) => {
+      res.send(JSON.stringify(followers));
+    });
+});
+
+// Endpoint to return list of users you are following and their id#
+router.get('/following', (req, res) => {
+  const { user } = req;
+  dbHelpers.getFollowing(user.id)
+    .then((following) => {
+      res.send(JSON.stringify(following));
+    });
+});
+
+// Endpoint to follow a user
+router.get('/follow/:followerID', (req, res) => {
+  const { user } = req;
+  dbHelpers.followUser(user.id, req.params.followerID)
+    .then(() => {
+      res.send('successfully followed');
+    });
+});
+
+// Endpoint to unfollow a user
+router.get('/unfollow/:followerID', (req, res) => {
+  const { user } = req;
+  dbHelpers.unfollowUser(user.id, req.params.followerID)
+    .then(() => {
+      res.send('successfully unfollowed');
+    });
 });
 
 module.exports = router;
