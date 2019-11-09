@@ -9,6 +9,7 @@ const insertBook = (book) => models.Book.create({
   author: book.author,
   description: book.description,
   coverURL: book.coverURL,
+  genre: book.genre,
 });
 
 // Takes an identifying number and returns the book info
@@ -60,6 +61,9 @@ const updatePreferences = (userID, subject, toRead) => models.UserPreference.fin
 
 // Takes a userID and returns the user preferences
 const getPreferences = (userID) => models.UserPreference.findOne({
+  attributes: {
+    exclude: ['id', 'userID', 'createdAt', 'updatedAt'],
+  },
   where: {
     userID,
   },
@@ -83,11 +87,12 @@ const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
 // update the user's interest in a book. Update takes two parameters -
 // first one is values which will be used to perform the update, and second one is options
 const changeUserInterest = (userID, isbn, toRead) => models.UserBook.update({
+  is_interested: toRead,
+}, {
   where: {
     userID,
     isbn,
   },
-  is_interested: toRead,
 });
 
 const verifyUserBook = (userID, isbn) => models.userBook.findOne({
