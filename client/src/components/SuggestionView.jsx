@@ -102,9 +102,11 @@ class SuggestionView extends React.Component {
             >
               <img src={bookSuggestion.coverURL} alt="Smiley face" />
             </div>
+            <br />
             <Typography variant="h6">{bookSuggestion.title}</Typography>
             <Typography variant="subtitle1">{bookSuggestion.author || null} </Typography>
             <Typography variant="caption">{bookSuggestion.description}</Typography>
+            <br />
             <br />
             <div>
               <SuggestionButtons
