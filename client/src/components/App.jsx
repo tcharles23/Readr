@@ -18,11 +18,8 @@ class App extends React.Component {
     this.state = {
       isLoggedIn: false,
       user: null,
-      bookSuggestion: testBook,
       userBookList: null,
     };
-
-    this.getUserBookList = this.getUserBookList.bind(this);
   }
 
   /* Sends request to server to get a book suggestion from google books API.
@@ -50,23 +47,9 @@ class App extends React.Component {
     });
   }
 
-  // Sends server request to retrieve usersbooklist
-  getUserBookList() {
-    const { user } = this.state;
-    return axios.get('/readr/booklist', {
-      userID: user.id,
-      // this is true or false value, passed in on click
-      toRead: true, // <-------this is hardcoded so we are only going to see the ToRead. FIXME
-    })
-      .then((bookList) => {
-        this.setState({
-          userBookList: bookList,
-        });
-      });
-  }
-
   render() {
     const { isLoggedIn, user, userBookList } = this.state;
+    // const { getBookSuggestion } = this.props;
     return (
       <div className="App">
         {/* this container centers content on the page. Width is inherited by the rest of app. */}
@@ -82,15 +65,20 @@ class App extends React.Component {
           {isLoggedIn ? (
             <div>
               <header>
-                <NavBar user={user} getUserBookList={this.getUserBookList} />
+                <NavBar user={user} />
               </header>
               <br />
               <Switch>
                 {/* // this is our default route */}
                 <Route exact path="/" component={Landing} />
-                {/* THIS IS HOW PASS PROPS IN REACT ROUTE v4. YES IT IS STRANGE AND ESLINT DOES NOT LIKE IT */}
-                <Route exact path="/suggestion" render={(props) => <SuggestionView {...props} user={user} />} />
+                <Route
+                  exact
+                  path="/suggestion"
+                  render={(props) => (
+                    <SuggestionView {...props} user={user} />)}
+                />
                 <Route exact path="/following" component={Following} />
+                {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
                 <Route exact path="/toread" render={(props) => <BookListView {...props} userBookList={userBookList} />} />
                 <Route exact path="/readnow" component={ReaderView} />
                 {/* // if noroute exists */}

@@ -66,5 +66,6 @@ router.get('/booklist', (req, res) => {
   //.then((bookList) =>
   //console.log(bookList);
   //res.send(JSON.stringify(bookList))
+  res.send({ bookTitle: "Charolet's Web" });
 });
 module.exports = router;

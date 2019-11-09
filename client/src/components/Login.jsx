@@ -3,8 +3,7 @@
 import React from 'react';
 import { Button, Box, Typography } from '@material-ui/core';
 
-const Login = (props) => {
-  console.log(props);
+const Login = () => {
   return (
     <div>
       <Box mx="auto" m={4}>
@@ -14,9 +13,9 @@ const Login = (props) => {
       <Button
         type="submit"
         fullWidth
-       variant="contained"
-       color="primary"
-       onClick={() => window.open('/auth/google', '_self')}
+        variant="contained"
+        color="primary"
+        onClick={() => window.open('/auth/google', '_self')}
       >
         Sign In with Google
       </Button>
