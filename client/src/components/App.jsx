@@ -29,7 +29,6 @@ class App extends React.Component {
     this.state = {
       isLoggedIn: false,
       user: null,
-      userBookList: null,
     };
   }
 
@@ -42,7 +41,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/auth/user').then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.user) {
         console.log('THERE IS A USER');
         this.setState({
@@ -60,7 +59,6 @@ class App extends React.Component {
 
   render() {
     const { isLoggedIn, user, userBookList } = this.state;
-    // const { getBookSuggestion } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
@@ -91,7 +89,7 @@ class App extends React.Component {
                   />
                   <Route exact path="/following" component={Following} />
                   {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
-                  <Route exact path="/toread" render={(props) => <BookListView {...props} userBookList={userBookList} />} />
+                  <Route exact path="/toread" render={(props) => <BookListView {...props} user={user} />} />
                   <Route exact path="/readnow" component={ReaderView} />
                   {/* // if noroute exists */}
                 </Switch>

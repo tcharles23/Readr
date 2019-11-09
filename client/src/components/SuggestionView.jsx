@@ -12,7 +12,6 @@ class SuggestionView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // this inherits the first book suggestion from the first app load, reset with each click
       bookSuggestion: null,
       // ---FORMAT IS THIS
       /* author: "Susan Wiggs"

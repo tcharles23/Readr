@@ -40,7 +40,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      console.log(bookInfo);
+      // console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
@@ -52,20 +52,18 @@ router.get('/suggestion', (req, res) => {
 });
 
 router.post('/interest', (req, res) => {
-  console.log(req);
-  res.send('book added to user list');
+  // console.log(req);
+  dbHelpers.createUserBook(req.body)
+    .then(() => {
+      res.status(200).send('book added to user list');
+    })
+    .catch((error) => console.log(error));
 });
 
 router.get('/booklist', (req, res) => {
   console.log(req);
-  // const { userID, toRead } = req;
-  // get the userId and toRead
-  // make call to server
-  // return the data
-  // userBookList(userId, toRead)
-  //  .then((bookList) =>
-  //  console.log(bookList);
-  //  res.send(JSON.stringify(bookList))
-  res.send({ bookTitle: "Charolet's Web" });
+  dbHelpers.userBookList(req.body)
+    .then((bookList) => res.send(bookList))
+    .catch((error) => console.log(error));
 });
 module.exports = router;
