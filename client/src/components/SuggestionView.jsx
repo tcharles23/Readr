@@ -83,7 +83,18 @@ class SuggestionView extends React.Component {
     const { bookSuggestion } = this.state;
     return (
       <div>
-        {bookSuggestion === null ? (<div align="center"><CircularProgress /></div>) : (
+        {bookSuggestion === null ? (
+          <div
+            style={{
+              position: 'absolute',
+              left: '50%',
+              top: '40%',
+              transform: 'translate(-50%, -40%)',
+            }}
+          >
+            <CircularProgress />
+          </div>
+        ) : (
           <div>
             <div style={{
               display: 'flex',
