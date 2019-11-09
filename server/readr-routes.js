@@ -71,7 +71,7 @@ router.get('/following', (req, res) => {
 });
 
 // Endpoint to follow a user
-router.get('/follow/:followerID', (req, res) => {
+router.post('/follow/:followerID', (req, res) => {
   const { user } = req;
   dbHelpers.followUser(user.id, req.params.followerID)
     .then(() => {
@@ -80,7 +80,7 @@ router.get('/follow/:followerID', (req, res) => {
 });
 
 // Endpoint to unfollow a user
-router.get('/unfollow/:followerID', (req, res) => {
+router.post('/unfollow/:followerID', (req, res) => {
   const { user } = req;
   dbHelpers.unfollowUser(user.id, req.params.followerID)
     .then(() => {
