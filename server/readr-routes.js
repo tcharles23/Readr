@@ -88,4 +88,19 @@ router.get('/unfollow/:followerID', (req, res) => {
     });
 });
 
+router.post('/interest', (req, res) => {
+  const { userID, isbn, toRead } = req.body;
+  dbHelpers.createUserBook(userID, isbn, toRead)
+    .then(() => {
+      res.status(200).send('book added to user list');
+    })
+    .catch((error) => console.log(error));
+});
+
+router.get('/booklist', (req, res) => {
+  const { userID, toRead } = req.body;
+  dbHelpers.userBookList(userID, toRead)
+    .then((bookList) => res.send(bookList))
+    .catch((error) => console.log(error));
+});
 module.exports = router;

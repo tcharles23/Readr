@@ -1,18 +1,25 @@
 /* This is the header or top bar component.  It is pretty static.
- * Includes navigatin links- App logo Title  2. link to "To-Read" list,
+ * Includes navigatin.buttons- App logo Title  2..button to "To-Read" list,
  * 3. "Explore Books" (new book suggestion), 4. Logout button.
  */
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import TypoGraphy from '@material-ui/core/Typography';
-import Toolbar from '@material-ui/core/Toolbar';
-import { makeStyles } from '@material-ui/core/styles';
-// import Link from '@material-ui/core/Link';
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  makeStyles,
+  Button,
+} from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import SuggestionView from './SuggestionView.jsx';
+import BookListView from './BookListView.jsx';
+import ReaderView from './ReaderView.jsx';
+import Following from './FollowingView.jsx';
+import Landing from './Landing.jsx';
 
-// This allows custom styling of the links, over-riding the root theme
+// This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
-  link: {
+  button: {
     margin: theme.spacing(1),
     color: 'white',
   },
@@ -24,24 +31,24 @@ const NavBar = (props) => {
   const firstName = username.split(' ')[0];
   return (
     <div>
+      <Typography variant="button" style={{ flex: 1 }}>
+        Welcome {firstName}!
+      </Typography>
       <AppBar color="primary" position="static">
         <Toolbar>
-          <TypoGraphy variant="h6" style={{ flex: 1 }}>
-            Welcome <TypoGraphy variant="subtitle1">{firstName}</TypoGraphy>
-          </TypoGraphy>
-          <TypoGraphy>
-            <Link to="/suggestion" className={classes.link}>
+          <Typography>
+            <Button size="large" component={Link} to="/suggestion" className={classes.button}>
               Explore Books
-            </Link>
-            <Link to="/toread" className={classes.link}>
+            </Button>
+            <Button size="large" component={Link} to="/toread" className={classes.button}>
               To-Read
-            </Link>
-            <Link to="/following" className={classes.link}>
+            </Button>
+            <Button size="large" component={Link} to="/following" className={classes.button}>
               Following
-            </Link>
+            </Button>
             {/* This directs to passport auth logout */}
-            <a href="/auth/logout" className={classes.link}>Logout</a>
-          </TypoGraphy>
+            <Button size="large" href="/auth/logout" className={classes.button}>Logout</Button>
+          </Typography>
         </Toolbar>
       </AppBar>
     </div>
