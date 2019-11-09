@@ -85,7 +85,7 @@ class App extends React.Component {
           {isLoggedIn ? (
             <div>
               <header>
-                <NavBar user={user} />
+                <NavBar user={user} getUserBookList={this.getUserBookList} />
               </header>
               <br />
               <Switch>

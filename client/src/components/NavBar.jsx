@@ -33,7 +33,7 @@ const NavBar = (props) => {
             <Link to="/suggestion" className={classes.link}>
               Explore Books
             </Link>
-            <Link to="/toread" className={classes.link}>
+            <Link to="/toread" className={classes.link} onClick={getUserBookList}>
               To-Read
             </Link>
             <Link to="/following" className={classes.link}>
