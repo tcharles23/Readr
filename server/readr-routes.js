@@ -29,7 +29,7 @@ router.get('/suggestion', (req, res) => {
   // Select random category from user's personalized data
   const userPref = { comedy: 0.74, romance: 0.54, thriller: 0.21 }; // FIXME: temp data
   const category = selectCategory(userPref);
-  const book = {};
+  const book = { genre: category };
 
   // Send search to that category
   categorySearch(category, 0)
