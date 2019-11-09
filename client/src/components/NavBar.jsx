@@ -23,7 +23,6 @@ const NavBar = (props) => {
   const classes = useStyles();
   const { username } = props.user;
   const firstName = username.split(' ')[0];
-  const { getUserBookList, getBookSuggestion } = props;
   return (
     <div>
       <AppBar color="primary" position="static">

@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { Container, Typography } from '@material-ui/core';
-import { BrowserRouter, Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './Login.jsx';
 import NavBar from './NavBar.jsx';
 import SuggestionView from './SuggestionView.jsx';
-import testBook from './TestBook';
 import BookListView from './BookListView.jsx';
 import ReaderView from './ReaderView.jsx';
 import Following from './FollowingView.jsx';
