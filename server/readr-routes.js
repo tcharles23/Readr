@@ -2,6 +2,8 @@
 
 const router = require('express').Router();
 const { categorySearch, selectCategory, selectBook } = require('./suggestion');
+const { userBookList, createUserBook, changeUserInterest } = require('../sequelize/db-helpers')
+
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -33,4 +35,20 @@ router.get('/suggestion', (req, res) => {
     });
 });
 
+router.post('/interest', (req, res) => {
+  console.log(req);
+  res.send('book added to user list');
+});
+
+router.get('/booklist', (req, res) => {
+  console.log(req);
+  // const { userID, toRead } = req;
+  // get the userId and toRead
+  // make call to server
+  // return the data
+  // userBookList(userId, toRead)
+  //.then((bookList) =>
+  //console.log(bookList);
+  //res.send(JSON.stringify(bookList))
+});
 module.exports = router;

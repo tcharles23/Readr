@@ -26,8 +26,8 @@ const NavBar = (props) => {
     <div>
       <AppBar color="primary" position="static">
         <Toolbar>
-          <TypoGraphy variant="h6" style={{ flex: 1 }}>
-            Welcome <TypoGraphy variant="subtitle1">{firstName}</TypoGraphy>
+          <TypoGraphy variant="button" style={{ flex: 1 }}>
+            Welcome {firstName}!
           </TypoGraphy>
           <TypoGraphy>
             <Link to="/suggestion" className={classes.link}>
