@@ -71,6 +71,62 @@ const verifyUserBook = (userID, isbn) => models.userBook.findOne({
   },
 });
 
+// ----------FOLLOWERS----------
+// Follow user
+const followUser = (userID, followerID) => models.UserFollower.create({
+  userID,
+  followerID,
+});
+
+const unfollowUser = (userID, followerID) => models.UserFollower.destroy({
+  where: {
+    userID,
+    followerID,
+  },
+});
+
+// Get list of users you are following
+const getFollowing = (userID) => models.UserFollower.findAll({
+  attributes: ['followerID'],
+  where: {
+    userID,
+  },
+})
+  .then((connectionData) => connectionData.map(
+    (connectionInfo) => connectionInfo.dataValues.followerID,
+  ))
+  .then((userIDs) => models.User.findAll({
+    attributes: ['username'],
+    where: {
+      id: userIDs,
+    },
+  }))
+  .then((users) => users.map(
+    (user) => user.username,
+  ));
+
+// Get list of users following you
+const getFollowers = (userID) => models.UserFollower.findAll({
+  attributes: ['userID'],
+  where: {
+    followerID: userID,
+  },
+})
+  .then((connectionData) => connectionData.map(
+    (connectionInfo) => connectionInfo.dataValues.userID,
+  ))
+  .then((userIDs) => models.User.findAll({
+    attributes: ['username', 'id'],
+    where: {
+      id: userIDs,
+    },
+  }));
+
+const createUser = (username, googleId) => models.User.create({
+  username,
+  googleId,
+});
+
 module.exports.insertBook = insertBook;
 module.exports.findBook = findBook;
 module.exports.createPreferences = createPreferences;
@@ -80,3 +136,8 @@ module.exports.userBookList = userBookList;
 module.exports.createUserBook = createUserBook;
 module.exports.verifyUserBook = verifyUserBook;
 module.exports.changeUserInterest = changeUserInterest;
+module.exports.followUser = followUser;
+module.exports.unfollowUser = unfollowUser;
+module.exports.getFollowing = getFollowing;
+module.exports.getFollowers = getFollowers;
+module.exports.createUser = createUser;
