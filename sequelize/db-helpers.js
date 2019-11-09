@@ -1,5 +1,7 @@
 const models = require('./index');
 
+
+// ----------BOOKS----------
 // Takes a book object and creates a new books
 const insertBook = (book) => models.Book.create({
   isbn: book.isbn,
@@ -16,6 +18,8 @@ const findBook = (isbn) => models.Book.findOne({
   },
 });
 
+
+// ----------USER_PREFERENCES----------
 const defaultPref = 0.50;
 // Takes the userID and creates the default preferences for the user
 const createPreferences = (userID) => models.UserPreference.create({
@@ -39,6 +43,7 @@ const getPreferences = (userID) => models.UserPreference.findOne({
   },
 });
 
+// ----------USER_BOOKS----------
 // Takes a userID and a toRead boolean and returns list of all books on toRead / not toRead list
 const userBookList = (userID, toRead) => models.UserBook.findAll({
   where: {
@@ -50,6 +55,12 @@ const userBookList = (userID, toRead) => models.UserBook.findAll({
 const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
   userID,
   isbn,
+  is_interested: toRead,
+});
+
+// update the user's interest in a book. Update takes two parameters -
+// first one is values which will be used to perform the update, and second one is options
+const changeUserInterest = (userID, isbn, toRead) => models.UserBook.update({
   is_interested: toRead,
 });
 
@@ -68,3 +79,4 @@ module.exports.getPreferences = getPreferences;
 module.exports.userBookList = userBookList;
 module.exports.createUserBook = createUserBook;
 module.exports.verifyUserBook = verifyUserBook;
+module.exports.changeUserInterest = changeUserInterest;
