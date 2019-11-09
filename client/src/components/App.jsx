@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Container from '@material-ui/core/Container';
+import { Container, Typography } from '@material-ui/core';
 import { BrowserRouter, Router, Route, Switch } from 'react-router-dom';
-import TypoGraphy from '@material-ui/core/Typography';
 import Login from './Login.jsx';
 import NavBar from './NavBar.jsx';
 import SuggestionView from './SuggestionView.jsx';
@@ -14,8 +13,6 @@ import Landing from './Landing.jsx';
 
 
 class App extends React.Component {
-  // --------handles what happens after the user clicks Login
-
   constructor(props) {
     super(props);
     this.state = {
@@ -66,20 +63,20 @@ class App extends React.Component {
           userBookList: bookList,
         });
       });
-  };
+  }
 
   render() {
-    const {
-      bookSuggestion, isLoggedIn, user, userBookList,
-    } = this.state;
+    const { isLoggedIn, user, userBookList } = this.state;
     return (
       <div className="App">
         {/* this container centers content on the page. Width is inherited by the rest of app. */}
         <Container component="main" maxWidth="sm">
-          <TypoGraphy variant="h2"> Readr </TypoGraphy>
+          <br />
+          <Typography variant="h2" align="center"> Readr </Typography>
+          <br />
+          <br />
           <div>
-            {isLoggedIn === false ? (
-              <Login />) : null }
+            {isLoggedIn === false ? (<Login />) : null }
           </div>
           {/* conditional rendering of the components based on if the user is logged in */}
           {isLoggedIn ? (
