@@ -4,9 +4,17 @@
 */
 import React from 'react';
 
-function BookListItem() {
+function BookListItem(props) {
+  const { book } = props;
+  console.log(book);
   return (
     <div>
+      <ul key={book.thumbnail}>
+
+        <button type="button" onClick={() => this.handleGameClick()}>
+          Remove from To-Read list
+        </button>
+      </ul>
     </div>
   );
 }

@@ -5,6 +5,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@material-ui/core';
+import BookListItem from './BookListItem.jsx';
 
 class BookListView extends React.Component {
   constructor(props) {
@@ -53,8 +54,10 @@ class BookListView extends React.Component {
           </div>
         ) : (
           <div>
-            {/* mapp over each item in book list and display */}
-            {"BOOKS LIST HERE"}
+            <h2>Your To-Read List:</h2>
+            {Object.keys(bookList).map((book) => (
+              <BookListItem book={bookList[book]} />
+            ))}
           </div>
         )}
       </div>
