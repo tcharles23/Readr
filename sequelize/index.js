@@ -44,10 +44,11 @@ const Book = db.define('book', {
     type: Sequelize.TEXT,
     unique: true,
   },
-  cover: {
+  coverURL: {
     type: Sequelize.STRING,
     unique: true,
   },
+  genre: Sequelize.STRING,
 });
 
 // creating the field on the table
