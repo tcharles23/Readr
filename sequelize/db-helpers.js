@@ -72,11 +72,20 @@ const getPreferences = (userID) => models.UserPreference.findOne({
 // ----------USER_BOOKS----------
 // Takes a userID and a toRead boolean and returns list of all books on toRead / not toRead list
 const userBookList = (userID, toRead) => models.UserBook.findAll({
+  attributes: ['isbn'],
   where: {
     userID,
     is_interested: toRead,
   },
-});
+})
+  .then((bookIdentifiers) => bookIdentifiers.map(
+    (bookIdentifier) => bookIdentifier.isbn,
+  ))
+  .then((identifiers) => models.Book.findAll({
+    where: {
+      isbn: identifiers,
+    },
+  }));
 
 const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
   userID,
