@@ -41,14 +41,10 @@ const Book = db.define('book', {
   },
   author: Sequelize.STRING,
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     unique: true,
   },
   cover: {
-    type: Sequelize.STRING,
-    unique: true,
-  },
-  url: {
     type: Sequelize.STRING,
     unique: true,
   },
