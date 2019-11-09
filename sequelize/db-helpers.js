@@ -2,18 +2,17 @@ const models = require('./index');
 
 // Takes a book object and creates a new books
 const insertBook = (book) => models.Book.create({
-  isbn: book.availability.isbn, // possibly change since might not have isbn FIXME: might change to openlibrary
+  isbn: book.isbn,
   title: book.title,
-  author: book.authors[0].name, // possibly change to deal with multiple authors
-  description: book.description, // TODO: need to request at endpoint /api/books with jscmd as details
-  cover: book.cover, // TODO: need to request at endpoint /api/books with jscmd as data
-  url: book.url,
+  author: book.author,
+  description: book.description,
+  coverURL: book.coverURL,
 });
 
 // Takes an identifying number and returns the book info
-const findBook = (identifier) => models.Book.findOne({
+const findBook = (isbn) => models.Book.findOne({
   where: {
-    isbn: identifier,
+    isbn,
   },
 });
 
@@ -54,6 +53,13 @@ const createUserBook = (userID, isbn, toRead) => models.UserBook.create({
   is_interested: toRead,
 });
 
+const verifyUserBook = (userID, isbn) => models.userBook.findOne({
+  where: {
+    userID,
+    isbn,
+  },
+});
+
 module.exports.insertBook = insertBook;
 module.exports.findBook = findBook;
 module.exports.createPreferences = createPreferences;
@@ -61,3 +67,4 @@ module.exports.updatePreferences = updatePreferences;
 module.exports.getPreferences = getPreferences;
 module.exports.userBookList = userBookList;
 module.exports.createUserBook = createUserBook;
+module.exports.verifyUserBook = verifyUserBook;
