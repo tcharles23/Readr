@@ -100,14 +100,11 @@ const getFollowing = (userID) => models.UserFollower.findAll({
     (connectionInfo) => connectionInfo.dataValues.followerID,
   ))
   .then((userIDs) => models.User.findAll({
-    attributes: ['username'],
+    attributes: ['username', 'id'],
     where: {
       id: userIDs,
     },
-  }))
-  .then((users) => users.map(
-    (user) => user.username,
-  ));
+  }));
 
 // Get list of users following you
 const getFollowers = (userID) => models.UserFollower.findAll({
