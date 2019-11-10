@@ -3,30 +3,65 @@
 * buttons to remove from list, move to another list, and read now 
 */
 import React from 'react';
-import { Typography, Button, Box } from '@material-ui/core';
+import { Typography, Grid, Paper } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 500,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
+  },
+}));
 
 function BookListItem(props) {
+  const classes = useStyles();
   const { book } = props;
   console.log(book);
   return (
     <div>
-      <Box m={1} mx="auto">
-        <ul key={book.id}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          >
-            <img src={book.coverURL} alt="Smiley face" />
-          </div>
-          <Typography variant="body1" align="center">{book.title}</Typography>
-          <Typography variant="subtitle1" align="center">{book.author || null} </Typography>
-          <Button size="small" color="primary" variant="text" onClick={() => this.handleGameClick()}>
-            Remove from To-Read list
-          </Button>
-        </ul>
-      </Box>
+      <ul>
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            <Grid item>
+              <img className={classes.img} alt="complex" src={book.coverURL} />
+            </Grid>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                <Grid item xs>
+                  <Typography gutterBottom variant="subtitle1">
+                    {book.title}
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    {book.author}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    {book.genre}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }}>
+                    Remove from To-Read List
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Paper>
+      </ul>
     </div>
   );
 }
