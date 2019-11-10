@@ -54,8 +54,10 @@ export default function FollowTabs(props) {
   const {
     followers,
     following,
+    followerID,
     handleUnfollowClick,
-    handleFollowClick 
+    handleFollowClick,
+    handleIdChange,
   } = props;
 
   const handleChange = (event, newValue) => {
@@ -83,7 +85,7 @@ export default function FollowTabs(props) {
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
         <div>
-          <FollowForm handleFollowClick={handleFollowClick} />
+          <FollowForm handleFollowClick={handleFollowClick} handleIdChange={handleIdChange} followerID={followerID} />
         </div>
         <br />
         {/* This is iterating over the Following List and populating each user onto the view */}
