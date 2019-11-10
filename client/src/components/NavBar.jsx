@@ -11,11 +11,6 @@ import {
   Button,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import SuggestionView from './SuggestionView.jsx';
-import BookListView from './BookListView.jsx';
-import ReaderView from './ReaderView.jsx';
-import Following from './FollowView.jsx';
-import Landing from './Landing.jsx';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({

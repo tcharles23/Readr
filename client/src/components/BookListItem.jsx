@@ -52,7 +52,7 @@ function BookListItem(props) {
                 </Typography>
               </Grid>
               <Grid item>
-                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn)}>
+                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
                   Remove from To-Read List
                 </Typography>
               </Grid>

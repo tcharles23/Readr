@@ -36,12 +36,18 @@ class BookListView extends React.Component {
       .catch((error) => console.log(error));
   }
 
-  handleRemoveClick() {
-    return axios. // <---------FIX ME
-
-    // reset the state so removed book is not shown
-    this.getUserBookList();
-
+  handleRemoveClick(isbn, toUpdate) {
+    const { user } = this.props;
+    return axios.patch('/readr/interest', {
+      userID: user.id,
+      isbn,
+      toUpdate,
+    }).then(() => {
+      console.log('Successfully removed Book from to-read list')
+      // reset the state so removed book is not shown
+      this.getUserBookList();
+    })
+      .catch((error) => console.log(error));
   }
 
   render() {
