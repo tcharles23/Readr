@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import { Typography, Paper, Tab, Tabs, CircularProgress } from '@material-ui/core';
+import {
+ Typography, Paper, Tab, Tabs, CircularProgress 
+} from '@material-ui/core';
 import FullWidthTabs from './TabPanel.jsx';
 import FollowingUser from './BookListItem.jsx';
 
@@ -37,6 +39,18 @@ class FollowingView extends React.Component {
         console.log(following.data);
         this.setState({ following });
       })
+      .catch((error) => console.log(error));
+  }
+
+  handleFollowClick(followerID) {
+    return axios.post(`/readr/follow/${followerID}`)
+      .then(() => this.getFollowers())
+      .catch((error) => console.log(error));
+  }
+
+  handleUnfollowClick(followerID) {
+    return axios.post(`/readr/unfollow/${followerID}`)
+      .then(() => this.getFollowing())
       .catch((error) => console.log(error));
   }
 

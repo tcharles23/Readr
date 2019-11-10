@@ -21,13 +21,6 @@ const FollowForm = () => {
       <form className={classes.container} noValidate autoComplete="off" onSubmit="myFunction()">
         <div>
           <TextField
-            id="outlined-helperText"
-            label="Username"
-            className={classes.textField}
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
             id="outlined-number"
             label="User ID"
             type="number"
