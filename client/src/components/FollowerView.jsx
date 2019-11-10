@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Typography, Paper, Tab, Tabs, CircularProgress } from '@material-ui/core';
-import FollowingUser from './BookListItem.jsx';
-
+import { Typography, CircularProgress } from '@material-ui/core';
+import FullWidthTab from './TabPanel.jsx';
 class FollowingView extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +30,7 @@ class FollowingView extends React.Component {
   }
 
   getFollowing() {
-    return axios.post('/readr/following')
+    return axios.get('/readr/following')
       .then((following) => {
         console.log(following.data);
         this.setState({ following });
@@ -56,26 +55,11 @@ class FollowingView extends React.Component {
           </div>
         ) : (
           <div>
-            <Paper className={classes.root}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                centered
-              >
-                <Tab label="Following"  {...a11yProps(0)}/>
-                <Tab label="Followers"  {...a11yProps(1)}/>
-              </Tabs>
-            </Paper>
-            <TabPanel value={value} index={0}>
-              {Object.keys(followers).map((follower) => (
-                <FollowingUser follower={followers[follower]} />
-              ))}
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                Item Two
-            </TabPanel>
+            <FullWidthTab />
+            {/* <Typography variant="button">Following</Typography>
+            {Object.keys(followers).map((follower) => (
+              <FollowingUser follower={followers[follower]} />
+            ))} */}
           </div>
         )}
       </div>

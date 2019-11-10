@@ -36,6 +36,7 @@ class SuggestionView extends React.Component {
   // Request to server to get a new book suggestion
   getBookSuggestion() {
     return axios.get('/readr/suggestion').then((retrievedBook) => {
+      // a conditinal is here becuase some books were returning empty data, so we want to retry
       if (retrievedBook.data === '') {
         this.getBookSuggestion();
       } else {
@@ -84,6 +85,7 @@ class SuggestionView extends React.Component {
     const { bookSuggestion } = this.state;
     return (
       <div>
+        {/* Spinner until component mounts and sets state */}
         {bookSuggestion === null ? (
           <div
             style={{
