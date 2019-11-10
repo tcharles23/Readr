@@ -89,7 +89,7 @@ class App extends React.Component {
                   />
                   <Route exact path="/following" component={Following} />
                   {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
-                  <Route exact path="/toread" render={(props) => <BookListView {...props} user={user} />} />
+                  <Route exact path="/booklist" render={(props) => <BookListView {...props} user={user} />} />
                   <Route exact path="/readnow" component={ReaderView} />
                   {/* // if noroute exists */}
                 </Switch>

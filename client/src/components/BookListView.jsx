@@ -5,13 +5,13 @@
 import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@material-ui/core';
+import BookListItem from './BookListItem.jsx';
 
 class BookListView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       bookList: null,
-      userID: props.user.id,
     };
 
     this.getUserBookList = this.getUserBookList.bind(this);
@@ -23,15 +23,16 @@ class BookListView extends React.Component {
 
   // Request to server to get a new book suggestion
   getUserBookList() {
-    const { userID } = this.state;
-    console.log(userID);
-    return axios.get('/readr/booklist', {
-      userID,
+    const { user } = this.props;
+    return axios.post('/readr/booklist', {
+      userID: user.id,
       toRead: true,
     })
       .then((books) => {
+        console.log(books.data);
         this.setState({ bookList: books.data });
-      });
+      })
+      .catch((error) => console.log(error));
   }
 
 
@@ -53,8 +54,10 @@ class BookListView extends React.Component {
           </div>
         ) : (
           <div>
-            {/* mapp over each item in book list and display */}
-            {Object.values(bookList)}
+            <Typography variant="button">Your To-Read List:</Typography>
+            {Object.keys(bookList).map((book) => (
+              <BookListItem book={bookList[book]} />
+            ))}
           </div>
         )}
       </div>

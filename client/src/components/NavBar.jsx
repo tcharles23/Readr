@@ -40,7 +40,7 @@ const NavBar = (props) => {
             <Button size="large" component={Link} to="/suggestion" className={classes.button}>
               Explore Books
             </Button>
-            <Button size="large" component={Link} to="/toread" className={classes.button}>
+            <Button size="large" component={Link} to="/booklist" className={classes.button}>
               To-Read
             </Button>
             <Button size="large" component={Link} to="/following" className={classes.button}>
