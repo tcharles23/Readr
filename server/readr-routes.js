@@ -49,14 +49,10 @@ router.get('/suggestion', (req, res) => {
       // res.send(JSON.stringify(book));
     })
     .then(() => res.send(JSON.stringify(book)))
-<<<<<<< HEAD
-    .catch((error) => console.log(error));
-=======
     .catch((err) => {
       console.error(err);
       res.end();
     });
->>>>>>> aabf70827910f4ce08125f7b5bf719c01258e70f
 });
 
 // Endpoint to return list of followers
