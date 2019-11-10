@@ -26,7 +26,7 @@ class SuggestionView extends React.Component {
     this.postUserInterest = this.postUserInterest.bind(this);
     this.handleYesClick = this.handleYesClick.bind(this);
     this.handleNoClick = this.handleNoClick.bind(this);
-    this.handleReadNowClick = this.handleReadNowClick.bind(this);
+    // this.handleReadNowClick = this.handleReadNowClick.bind(this);
   }
 
   componentDidMount() {
