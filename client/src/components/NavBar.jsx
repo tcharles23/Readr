@@ -22,12 +22,15 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = (props) => {
   const classes = useStyles();
-  const { username } = props.user;
+  const { username, id } = props.user;
   const firstName = username.split(' ')[0];
   return (
     <div>
-      <Typography variant="button" style={{ flex: 1 }}>
+      <Typography variant="button" style={{ flex: 1, float: 'left' }}>
         Welcome {firstName}!
+      </Typography>
+      <Typography variant="body2" style={{ flex: 1, float: 'right' }}>
+        Your user ID#: {id}
       </Typography>
       <AppBar color="primary" position="static">
         <Toolbar>
