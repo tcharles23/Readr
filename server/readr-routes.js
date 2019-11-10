@@ -102,6 +102,17 @@ router.post('/interest', (req, res) => {
     .catch((error) => console.log(error));
 });
 
+router.patch('/interest', (req, res) => {
+  const { userID, isbn, toUpdate } = req.body;
+  dbHelpers.changeUserInterest(userID, isbn, toUpdate)
+    .then(() => dbHelpers.findBook(isbn))
+    .then((bookData) => dbHelpers.updatePreferences(userID, bookData.genre, toUpdate))
+    .then(() => {
+      res.status(200).send('book list updated');
+    })
+    .catch((error) => console.log(error));
+});
+
 router.post('/booklist', (req, res) => {
   const { userID, toRead } = req.body;
   console.log("booklist: server side")
