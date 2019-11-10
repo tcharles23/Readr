@@ -25,15 +25,14 @@ router.get('/', authCheck, (req, res) => {
 
 router.get('/suggestion', (req, res) => {
   const { user } = req;
-  // TODO: Get users personalized data as userPref
-  // Select random category from user's personalized data
-  const userPref = { comedy: 0.74, romance: 0.54, thriller: 0.21 }; // FIXME: temp data
-  const category = selectCategory(userPref);
-  const book = { genre: category };
-
-  // Send search to that category
-  categorySearch(category, 0)
-    .then((books) => categorySearch(category, selectBook(books.ebook_count)))
+  const book = {};
+  dbHelpers.getPreferences(user.id)
+    .then((preferences) => {
+      const category = selectCategory(preferences.dataValues);
+      book.genre = category;
+      return categorySearch(category, 0);
+    })
+    .then((books) => categorySearch(book.genre, selectBook(books.ebook_count)))
     // Get total book count & Send request with offset set to a random number from the count
     .then((books) => {
       book.title = books.works[0].title;
@@ -49,7 +48,11 @@ router.get('/suggestion', (req, res) => {
       return dbHelpers.insertBook(book);
       // res.send(JSON.stringify(book));
     })
-    .then(() => res.send(JSON.stringify(book)));
+    .then(() => res.send(JSON.stringify(book)))
+    .catch((err) => {
+      console.error(err);
+      res.end();
+    });
 });
 
 // Endpoint to return list of followers
@@ -91,6 +94,8 @@ router.post('/unfollow/:followerID', (req, res) => {
 router.post('/interest', (req, res) => {
   const { userID, isbn, toRead } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)
+    .then(() => dbHelpers.findBook(isbn))
+    .then((bookData) => dbHelpers.updatePreferences(userID, bookData.genre, toRead))
     .then(() => {
       res.status(200).send('book added to user list');
     })
