@@ -49,6 +49,7 @@ export default function FullWidthTabs(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const { followers, following } = props;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -75,10 +76,11 @@ export default function FullWidthTabs(props) {
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
         <FollowForm />
-        Users Following
+        {Object.keys(following).map((user) => (
+          <FollowingUser user={following[user]} handleRemoveClick={this.handleRemoveClick} />))}
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-          Users Followers
+          Users Follower
       </TabPanel>
     </div>
   );
