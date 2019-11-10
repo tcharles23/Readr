@@ -103,6 +103,7 @@ router.post('/interest', (req, res) => {
 });
 
 router.patch('/interest', (req, res) => {
+  console.log(req.body);
   const { userID, isbn, toUpdate } = req.body;
   dbHelpers.changeUserInterest(userID, isbn, toUpdate)
     .then(() => dbHelpers.findBook(isbn))

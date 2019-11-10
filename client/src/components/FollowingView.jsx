@@ -1,13 +1,77 @@
 import React from 'react';
+import axios from 'axios';
+import {
+ Typography, Paper, Tab, Tabs, CircularProgress 
+} from '@material-ui/core';
+import FollowTabs from './FollowTabPanel.jsx';
 
+class FollowingView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      followers: null,
+      following: null,
+    };
 
-function Following() {
-  return (
-    <div>
-      <div>Following List</div>
-      <div>Followers</div>
-    </div>
-  );
+    this.getFollowers = this.getFollowers.bind(this);
+    this.getFollowing = this.getFollowing.bind(this);
+    this.handleFollowClick = this.handleFollowClick.bind(this);
+    this.handleUnfollowClick = this.handleUnfollowClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.getFollowers();
+    this.getFollowing();
+  }
+
+  // Request to server to get a new book suggestion
+  getFollowers() {
+    return axios.get('/readr/followers')
+      .then((followers) => {
+        console.log(followers.data);
+        this.setState({ followers: followers.data });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  getFollowing() {
+    return axios.get('/readr/following')
+      .then((following) => {
+        console.log(following.data);
+        this.setState({ following: following.data });
+      })
+      .catch((error) => console.log(error));
+  }
+
+  handleFollowClick(followerID) {
+    return axios.post(`/readr/follow/${followerID}`)
+      .then(() => this.getFollowers())
+      .catch((error) => console.log(error));
+  }
+
+  handleUnfollowClick(followerID) {
+    return axios.post(`/readr/unfollow/${followerID}`)
+      .then(() => this.getFollowing())
+      .catch((error) => console.log(error));
+  }
+
+  render() {
+    const { followers, following } = this.state;
+    return (
+      <div>
+        <div>
+          <Paper>
+            <FollowTabs
+              followers={followers}
+              following={following}
+              handleFollowClick={this.handleFollowClick}
+              handleUnfollowClick={this.handleUnfollowClick}
+            />
+          </Paper>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Following;
+export default FollowingView;

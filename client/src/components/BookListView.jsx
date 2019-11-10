@@ -15,6 +15,7 @@ class BookListView extends React.Component {
     };
 
     this.getUserBookList = this.getUserBookList.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,18 @@ class BookListView extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  handleRemoveClick(isbn, toUpdate) {
+    const { user } = this.props;
+    return axios.patch('/readr/interest', {
+      userID: user.id,
+      isbn,
+      toUpdate,
+    }).then(() => {
+      // reset the state so removed book is not shown
+      this.getUserBookList();
+    })
+      .catch((error) => console.log(error));
+  }
 
   render() {
     const { bookList } = this.state;
@@ -56,7 +69,7 @@ class BookListView extends React.Component {
           <div>
             <Typography variant="button">Your To-Read List:</Typography>
             {Object.keys(bookList).map((book) => (
-              <BookListItem book={bookList[book]} />
+              <BookListItem book={bookList[book]} handleRemoveClick={this.handleRemoveClick} />
             ))}
           </div>
         )}
