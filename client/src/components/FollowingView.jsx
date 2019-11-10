@@ -16,9 +16,11 @@ class FollowingView extends React.Component {
 
     this.getFollowers = this.getFollowers.bind(this);
     this.getFollowing = this.getFollowing.bind(this);
+    this.resetIdState = this.resetIdState.bind(this);
     this.handleFollowClick = this.handleFollowClick.bind(this);
     this.handleUnfollowClick = this.handleUnfollowClick.bind(this);
     this.handleIdChange = this.handleIdChange.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
@@ -48,13 +50,23 @@ class FollowingView extends React.Component {
   handleFollowClick() {
     const { followerID } = this.state;
     return axios.post(`/readr/follow/${followerID}`)
-      .then(() => this.getFollowers())
-      .catch((error) => console.log(error));
+      .then(() => {
+        this.resetIdState();
+        this.componentDidMount();
+      })
+      .catch(() => {
+        this.resetIdState();
+        this.componentDidMount();
+        //  if there is not a user with that id, we want to send back
+      });
   }
 
   handleUnfollowClick(followerID) {
     return axios.post(`/readr/unfollow/${followerID}`)
-      .then(() => this.getFollowing())
+      .then(() => {
+        this.resetIdState();
+        this.componentDidMount();
+      })
       .catch((error) => console.log(error));
   }
 
@@ -63,6 +75,13 @@ class FollowingView extends React.Component {
       followerID: e.target.value,
     });
   }
+
+  resetIdState() {
+    this.setState({
+      followerID: '',
+    });
+  };
+
 
   render() {
     const { followers, following, followerID } = this.state;
