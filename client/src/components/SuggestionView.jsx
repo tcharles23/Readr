@@ -36,7 +36,11 @@ class SuggestionView extends React.Component {
   // Request to server to get a new book suggestion
   getBookSuggestion() {
     return axios.get('/readr/suggestion').then((retrievedBook) => {
-      this.setState({ bookSuggestion: retrievedBook.data });
+      if (retrievedBook.data === '') {
+        this.getBookSuggestion();
+      } else {
+        this.setState({ bookSuggestion: retrievedBook.data });
+      }
     });
   }
 
