@@ -33,35 +33,33 @@ function BookListItem(props) {
   console.log(book);
   return (
     <div>
-      <ul>
-        <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <img className={classes.img} alt="complex" src={book.coverURL} />
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
-                    {book.title}
-                  </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    {book.author}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {book.genre}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }}>
-                    Remove from To-Read List
-                  </Typography>
-                </Grid>
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <img className={classes.img} alt="complex" src={book.coverURL} />
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  {book.title}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  {book.author}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {book.genre}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }}>
+                  Remove from To-Read List
+                </Typography>
               </Grid>
             </Grid>
           </Grid>
-        </Paper>
-      </ul>
+        </Grid>
+      </Paper>
     </div>
   );
 }

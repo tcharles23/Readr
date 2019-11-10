@@ -70,11 +70,11 @@ class SuggestionView extends React.Component {
     this.getBookSuggestion();
   }
 
-  handleReadNowClick() {
-    console.log('Clicked Read Now!');
-    // sends users to a view or link to openURL
-    // *************************** FIX ME
-  }
+  // handleReadNowClick() {
+  //   console.log('Clicked Read Now!');
+  //   // sends users to a view or link to openURL
+  //   // *************************** FIX ME
+  // }
 
   render() {
     const { bookSuggestion } = this.state;
@@ -111,7 +111,7 @@ class SuggestionView extends React.Component {
               <SuggestionButtons
                 handleNoClick={this.handleNoClick}
                 handleYesClick={this.handleYesClick}
-                handleReadNowClick={this.handleReadNowClick}
+                // handleReadNowClick={this.handleReadNowClick}
               />
             </div>
           </div>
