@@ -54,7 +54,7 @@ class BookListView extends React.Component {
           </div>
         ) : (
           <div>
-            <h2>Your To-Read List:</h2>
+            <Typography variant="h5">Your To-Read List:</Typography>
             {Object.keys(bookList).map((book) => (
               <BookListItem book={bookList[book]} />
             ))}

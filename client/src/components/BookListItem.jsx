@@ -3,18 +3,30 @@
 * buttons to remove from list, move to another list, and read now 
 */
 import React from 'react';
+import { Typography, Button, Box } from '@material-ui/core';
 
 function BookListItem(props) {
   const { book } = props;
   console.log(book);
   return (
     <div>
-      <ul key={book.thumbnail}>
-
-        <button type="button" onClick={() => this.handleGameClick()}>
-          Remove from To-Read list
-        </button>
-      </ul>
+      <Box m={1} mx="auto">
+        <ul key={book.id}>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          >
+            <img src={book.coverURL} alt="Smiley face" />
+          </div>
+          <Typography variant="body1" align="center">{book.title}</Typography>
+          <Typography variant="subtitle1" align="center">{book.author || null} </Typography>
+          <Button size="small" color="primary" variant="text" onClick={() => this.handleGameClick()}>
+            Remove from To-Read list
+          </Button>
+        </ul>
+      </Box>
     </div>
   );
 }
