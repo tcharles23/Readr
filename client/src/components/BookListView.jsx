@@ -43,7 +43,6 @@ class BookListView extends React.Component {
       isbn,
       toUpdate,
     }).then(() => {
-      console.log('Successfully removed Book from to-read list')
       // reset the state so removed book is not shown
       this.getUserBookList();
     })
