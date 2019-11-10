@@ -3,8 +3,7 @@ import axios from 'axios';
 import {
  Typography, Paper, Tab, Tabs, CircularProgress 
 } from '@material-ui/core';
-import FullWidthTabs from './TabPanel.jsx';
-import FollowingUser from './BookListItem.jsx';
+import FollowTabs from './FollowTabPanel.jsx';
 
 class FollowingView extends React.Component {
   constructor(props) {
@@ -16,6 +15,8 @@ class FollowingView extends React.Component {
 
     this.getFollowers = this.getFollowers.bind(this);
     this.getFollowing = this.getFollowing.bind(this);
+    this.handleFollowClick = this.handleFollowClick.bind(this);
+    this.handleUnfollowClick = this.handleUnfollowClick.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +29,7 @@ class FollowingView extends React.Component {
     return axios.get('/readr/followers')
       .then((followers) => {
         console.log(followers.data);
-        this.setState({ followers });
+        this.setState({ followers: followers.data });
       })
       .catch((error) => console.log(error));
   }
@@ -37,7 +38,7 @@ class FollowingView extends React.Component {
     return axios.get('/readr/following')
       .then((following) => {
         console.log(following.data);
-        this.setState({ following });
+        this.setState({ following: following.data });
       })
       .catch((error) => console.log(error));
   }
@@ -60,7 +61,12 @@ class FollowingView extends React.Component {
       <div>
         <div>
           <Paper>
-            <FullWidthTabs followers={followers} following={following} />
+            <FollowTabs
+              followers={followers}
+              following={following}
+              handleFollowClick={this.handleFollowClick}
+              handleUnfollowClick={this.handleUnfollowClick}
+            />
           </Paper>
         </div>
       </div>

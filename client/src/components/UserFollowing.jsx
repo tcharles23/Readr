@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 function UserFollowing(props) {
   const classes = useStyles();
   const { user, handleUnfollowClick } = props;
-  console.log(book);
+  console.log(user);
   return (
     <div>
       <Paper className={classes.paper}>

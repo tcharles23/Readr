@@ -18,12 +18,16 @@ const FollowForm = () => {
 
   return (
     <div>
-      <form className={classes.container} noValidate autoComplete="off" onSubmit="myFunction()">
+      <form className={classes.container} noValidate autoComplete="off">
         <div>
+          <Typography gutterBottom variant="subtitle1" style={{ float: 'left' }}>
+            Add a user`s ID to following them!
+          </Typography>
           <TextField
             id="outlined-number"
             label="User ID"
             type="number"
+            style={{ float: 'right' }}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,

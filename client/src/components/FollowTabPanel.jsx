@@ -6,6 +6,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import FollowForm from './FollowForm.jsx';
+import UserFollower from './UserFollower.jsx';
+import UserFollowing from './UserFollowing.jsx';
 
 
 function TabPanel(props) {
@@ -45,11 +47,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FullWidthTabs(props) {
+export default function FollowTabs(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const { followers, following } = props;
+  const {
+    followers,
+    following,
+    handleUnfollowClick,
+    handleFollowClick 
+  } = props;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -75,12 +82,30 @@ export default function FullWidthTabs(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} dir={theme.direction}>
-        <FollowForm />
-        {Object.keys(following).map((user) => (
-          <FollowingUser user={following[user]} handleRemoveClick={this.handleRemoveClick} />))}
+        <div>
+          <FollowForm handleFollowClick={handleFollowClick} />
+        </div>
+        <br />
+        {/* This is iterating over the Following List and populating each user onto the view */}
+        {following === null || followers.length === 0 ? (
+          <div>You are not following any users! </div>
+        ) : (
+          <div>
+            {Object.keys(following).map((user) => (
+              <UserFollowing user={following[user]} handleUnfollowClick={handleUnfollowClick} />))}
+          </div>
+        )}
       </TabPanel>
       <TabPanel value={value} index={1} dir={theme.direction}>
-          Users Follower
+        {followers === null || followers.length === 0 ? (
+          <div>No users are following you! </div>
+        ) : (
+          <div>
+            {Object.keys(followers).map((user) => (
+              <UserFollower user={followers[user]} />))}
+          </div>
+        )}
+        {/* This is iterating over the Followers List and populating each user onto the view */}
       </TabPanel>
     </div>
   );
