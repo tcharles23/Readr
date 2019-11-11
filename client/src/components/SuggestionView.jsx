@@ -7,6 +7,7 @@ import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress } from '@material-ui/core';
 import SuggestionButtons from './SuggestionButtons.jsx';
+import SwipeableBook from './SwipeableBook.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -99,6 +100,7 @@ class SuggestionView extends React.Component {
           </div>
         ) : (
           <div>
+            <SwipeableBook />
             <div style={{
               display: 'flex',
               justifyContent: 'center',
