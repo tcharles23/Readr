@@ -103,7 +103,6 @@ router.post('/interest', (req, res) => {
 });
 
 router.patch('/interest', (req, res) => {
-  console.log(req.body);
   const { userID, isbn, toUpdate } = req.body;
   dbHelpers.changeUserInterest(userID, isbn, toUpdate)
     .then(() => dbHelpers.findBook(isbn))
@@ -116,10 +115,8 @@ router.patch('/interest', (req, res) => {
 
 router.post('/booklist', (req, res) => {
   const { userID, toRead } = req.body;
-  console.log("booklist: server side")
   dbHelpers.userBookList(userID, toRead)
     .then((bookList) => {
-      console.log(bookList);
       res.send(bookList);
     })
     .catch((error) => console.log(error));

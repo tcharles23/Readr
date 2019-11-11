@@ -1,6 +1,6 @@
 /* A single book component from the BookListView.
-* Renders a thumbnail image, the title, author, genre, short description, date added. 
-* buttons to remove from list, move to another list, and read now 
+* Renders a thumbnail image, the title, author, genre, short description, date added.
+* buttons to remove from list, move to another list, and read now
 */
 import React from 'react';
 import { Typography, Grid, Paper } from '@material-ui/core';
@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 function BookListItem(props) {
   const classes = useStyles();
   const { book, handleRemoveClick } = props;
-  console.log(book);
   return (
     <div>
       <Paper className={classes.paper}>
