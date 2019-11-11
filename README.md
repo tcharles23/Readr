@@ -64,4 +64,13 @@ This app uses PostgreSQL
     * Join table to populate users To-Read list with unique User ID, ISBN#, and Boolean
     * Join table to show relationship between users/followers  
 
-
+##### To include in environmental variables:
+A clientID and clientSecret from google for authentication
+To include with developer determined values
+* cookieKey
+* DATABASE
+* USER_NAME
+* USER_PASSWORD
+* HOST
+* DB_PORT
+* PORT
