@@ -75,7 +75,7 @@ class BookListView extends React.Component {
           <div>
             <Typography variant="button">Your To-Read List:</Typography>
             {Object.keys(bookList).map((book) => (
-              <BookListItem book={bookList[book]} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
+              <BookListItem book={bookList[book]} key={book.title} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
             ))}
           </div>
         )}
