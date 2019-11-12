@@ -4,8 +4,9 @@
 */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Grid, Paper } from '@material-ui/core';
+import { Typography, Grid, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +55,15 @@ function BookListItem(props) {
               </Grid>
               <Grid item>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
-                  Remove from To-Read List
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    className={classes.button}
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete
+                  </Button>
                 </Typography>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
                   {book.availability === "borrow_available" ? <Link to="/readnow">Preview</Link> : <Link to="/readnow">Read Now</Link>}
