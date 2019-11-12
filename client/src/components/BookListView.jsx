@@ -16,6 +16,7 @@ class BookListView extends React.Component {
 
     this.getUserBookList = this.getUserBookList.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.handleReadNow = this.handleReadNow.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +49,13 @@ class BookListView extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  handleReadNow(urlSnippet) {
+    const { updateUrlSnippet } = this.props;
+    updateUrlSnippet(urlSnippet);
+    // recieves urlSnippet from item clicked on
+    // can pass it to another parent function handler
+  }
+
   render() {
     const { bookList } = this.state;
     return (
@@ -68,7 +76,7 @@ class BookListView extends React.Component {
           <div>
             <Typography variant="button">Your To-Read List:</Typography>
             {Object.keys(bookList).map((book) => (
-              <BookListItem book={bookList[book]} handleRemoveClick={this.handleRemoveClick} />
+              <BookListItem book={bookList[book]} key={book.isbn} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
             ))}
           </div>
         )}

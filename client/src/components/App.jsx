@@ -29,7 +29,9 @@ class App extends React.Component {
     this.state = {
       isLoggedIn: false,
       user: null,
+      urlSnippet: 'shakespearescom000shak',
     };
+    this.updateUrlSnippet = this.updateUrlSnippet.bind(this);
   }
 
   /* Sends request to server to get a book suggestion from google books API.
@@ -57,8 +59,12 @@ class App extends React.Component {
     });
   }
 
+  updateUrlSnippet(urlSnippet) {
+    this.setState({ urlSnippet });
+  }
+
   render() {
-    const { isLoggedIn, user, userBookList } = this.state;
+    const { isLoggedIn, user, userBookList, urlSnippet } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
@@ -95,8 +101,8 @@ class App extends React.Component {
                   />
                   <Route exact path="/following" component={FollowingView} />
                   {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
-                  <Route exact path="/booklist" render={(props) => <BookListView {...props} user={user} />} />
-                  <Route exact path="/readnow" component={ReaderView} />
+                  <Route exact path="/booklist" render={(props) => <BookListView {...props} user={user} updateUrlSnippet={this.updateUrlSnippet} />} />
+                  <Route exact path="/readnow" render={(props) => <ReaderView {...props} urlSnippet={urlSnippet} />} />
                 </Switch>
               </div>
             ) : null }
