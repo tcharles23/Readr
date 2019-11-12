@@ -27,6 +27,7 @@ class SuggestionView extends React.Component {
     this.postUserInterest = this.postUserInterest.bind(this);
     this.handleYesClick = this.handleYesClick.bind(this);
     this.handleNoClick = this.handleNoClick.bind(this);
+    this.clearBookSuggestion = this.clearBookSuggestion.bind(this);
     // this.handleReadNowClick = this.handleReadNowClick.bind(this);
   }
 
@@ -58,12 +59,22 @@ class SuggestionView extends React.Component {
     });
   }
 
+  // clears bookSuggestion before finding another
+  clearBookSuggestion() {
+    setTimeout(() => {
+      this.setState({
+        bookSuggestion: null,
+      });
+    }, 400);
+  }
+
   /* Adds book to the logged in users "not interested" list by
   * sending a update user interest request to the database.
   * Show the next book suggestion.
   */
   handleNoClick() {
     this.postUserInterest(false);
+    this.clearBookSuggestion();
     this.getBookSuggestion();
   }
 
@@ -73,6 +84,7 @@ class SuggestionView extends React.Component {
   */
   handleYesClick() {
     this.postUserInterest(true);
+    this.clearBookSuggestion();
     this.getBookSuggestion();
   }
 
