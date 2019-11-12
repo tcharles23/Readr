@@ -13,12 +13,9 @@ class ReaderView extends React.Component {
 
   render() {
     const { urlSnippet } = this.props;
-    // const urlSnippet = 'shakespearescom000shak';
-    // const urlSnippet = 'isbn_0553225553_0';
-    // console.log("Hi, im props", this.props);
     return (
       <Box align="center">
-        <iframe src={`https://www.archive.org/stream/${urlSnippet}`} width="1024" height="768" title="testing" />
+        <iframe src={`https://www.archive.org/stream/${urlSnippet}`} width="75%" height="800" title="testing" />
       </Box>
     );
   }

@@ -11,6 +11,7 @@ const insertBook = (book) => models.Book.create({
   coverURL: book.coverURL,
   genre: book.genre,
   urlSnippet: book.urlSnippet,
+  availability: book.availability,
 });
 
 // Takes an identifying number and returns the book info
