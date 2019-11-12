@@ -3,6 +3,7 @@
 * buttons to remove from list, move to another list, and read now
 */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Typography, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BookListItem(props) {
   const classes = useStyles();
-  const { book, handleRemoveClick } = props;
+  const { book, handleRemoveClick, handleReadNow } = props;
   return (
     <div>
       <Paper className={classes.paper}>
@@ -53,6 +54,9 @@ function BookListItem(props) {
               <Grid item>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
                   Remove from To-Read List
+                </Typography>
+                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
+                  <Link to="/readnow">Read Now</Link>
                 </Typography>
               </Grid>
             </Grid>
