@@ -49,6 +49,7 @@ const Book = db.define('book', {
     unique: true,
   },
   genre: Sequelize.STRING,
+  urlSnippet: Sequelize.STRING,
 });
 
 // creating the field on the table
