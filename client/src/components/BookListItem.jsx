@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 function BookListItem(props) {
   const classes = useStyles();
-  const { book, handleRemoveClick } = props;
+  const { book, handleRemoveClick, handleReadNow } = props;
   return (
     <div>
       <Paper className={classes.paper}>
@@ -53,6 +53,9 @@ function BookListItem(props) {
               <Grid item>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
                   Remove from To-Read List
+                </Typography>
+                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
+                  Read Now
                 </Typography>
               </Grid>
             </Grid>
