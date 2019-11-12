@@ -91,6 +91,15 @@ router.post('/unfollow/:followerID', (req, res) => {
     });
 });
 
+// Endpoint to update user preferences
+router.post('/preferences', (req, res) => {
+  const { userID, genre, toRead } = req.body;
+  dbHelpers.updatePreferences(userID, genre, toRead)
+    .then(() => {
+      res.send(201);
+    });
+});
+
 router.post('/interest', (req, res) => {
   const { userID, isbn, toRead } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)

@@ -80,7 +80,13 @@ class App extends React.Component {
                 <br />
                 <Switch>
                   {/* // this is our default route */}
-                  <Route exact path="/" component={Landing} />
+                  <Route
+                    exact
+                    path="/"
+                    render={(props) => (
+                      <Landing {...props} user={user} />
+                    )}
+                  />
                   <Route
                     exact
                     path="/suggestion"
