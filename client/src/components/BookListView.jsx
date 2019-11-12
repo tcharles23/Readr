@@ -50,7 +50,8 @@ class BookListView extends React.Component {
   }
 
   handleReadNow(urlSnippet) {
-    console.log(urlSnippet);
+    const { updateUrlSnippet } = this.props;
+    updateUrlSnippet(urlSnippet);
     // recieves urlSnippet from item clicked on
     // can pass it to another parent function handler
   }
