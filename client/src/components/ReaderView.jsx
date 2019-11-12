@@ -1,6 +1,7 @@
 /* Our react component for the in-app e-reader. See "README" for link to documentation.
 */
 import React from 'react';
+import { Box } from '@material-ui/core';
 
 class ReaderView extends React.Component {
   constructor(props) {
@@ -16,7 +17,9 @@ class ReaderView extends React.Component {
     // const urlSnippet = 'isbn_0553225553_0';
     // console.log("Hi, im props", this.props);
     return (
-      <iframe src={`https://www.archive.org/stream/${urlSnippet}`} width="480px" height="480px" title="testing" />
+      <Box align="center">
+        <iframe src={`https://www.archive.org/stream/${urlSnippet}`} width="1024" height="768" title="testing" />
+      </Box>
     );
   }
 }
