@@ -32,7 +32,14 @@ const useStyles = makeStyles((theme) => ({
 function BookListItem(props) {
   const classes = useStyles();
   const { book, handleRemoveClick, handleReadNow } = props;
-  console.log(book);
+  const availabilityCheck = (book) => {
+    switch (book.availability) {
+      case "open": return <Link to="/readnow">Read Now</Link>;
+      case "borrow_available": return <Link to="/readnow">Preview</Link>;
+      default: return <p>Sorry, no preview available</p>;
+    }
+  };
+
   return (
     <div>
       <Paper className={classes.paper}>
@@ -66,7 +73,8 @@ function BookListItem(props) {
                   </Button>
                 </Typography>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
-                  {book.availability === "borrow_available" ? <Link to="/readnow">Preview</Link> : <Link to="/readnow">Read Now</Link>}
+                  {/* {book.availability === "open" ? <Link to="/readnow">Read Now</Link> : null} */}
+                  {availabilityCheck(book)}
                 </Typography>
               </Grid>
             </Grid>
