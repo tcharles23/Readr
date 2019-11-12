@@ -84,6 +84,12 @@ class SuggestionView extends React.Component {
 
   render() {
     const { bookSuggestion } = this.state;
+    // check if no book description
+    if (bookSuggestion) {
+      if (!bookSuggestion.description) {
+        bookSuggestion.description = 'No description available';
+      }
+    }
     return (
       <div>
         {/* Spinner until component mounts and sets state */}
@@ -119,7 +125,7 @@ class SuggestionView extends React.Component {
                     <img src={bookSuggestion.coverURL} alt="Smiley face" />
                     <Typography variant="subtitle1">{bookSuggestion.author || null}
                     </Typography>
-                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200) || 'No Description'}...
+                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
                     </Typography>
                   </div>
                 )
