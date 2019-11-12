@@ -21,9 +21,6 @@ function SuggestionButtons(props) {
         Not Interested
         </Button>
       </div>
-      {/* <Button type="submit" variant="contained" fullWidth color="inherit" className={classes.button} onClick={() => props.handleReadNowClick()}>
-        Read Now
-      </Button> */}
     </div>
   );
 }

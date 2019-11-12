@@ -29,9 +29,6 @@ const NavBar = (props) => {
       <Typography variant="button" style={{ flex: 1, float: 'left' }}>
         Welcome {firstName}!
       </Typography>
-      <Typography variant="body2" style={{ flex: 1, float: 'right' }}>
-        Your user ID#: {id}
-      </Typography>
       <AppBar color="primary" position="static">
         <Toolbar>
           <Typography>
