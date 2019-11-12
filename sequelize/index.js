@@ -88,7 +88,7 @@ const UserPreference = db.define('user_preference', {
 });
 
 // { force: true } add into sync if db change is made
-db.sync({ force: true }).then(() => {
+db.sync().then(() => {
   console.log('connected to database');
 }).catch((err) => { console.log(err); });
 
