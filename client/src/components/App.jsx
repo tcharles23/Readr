@@ -71,7 +71,7 @@ class App extends React.Component {
       <MuiThemeProvider theme={theme}>
         <div className="App">
           {/* this container centers content on the page. Width is inherited by the rest of app. */}
-          <Container component="main" maxWidth="sm">
+          <Container component="main" maxWidth="lg">
             <br />
             <Typography variant="h2" align="center"> Readr </Typography>
             <br />
