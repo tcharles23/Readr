@@ -5,8 +5,9 @@
  */
 import React from 'react';
 import axios from 'axios';
-import { Typography, CircularProgress } from '@material-ui/core';
+import { Typography, CircularProgress, Box } from '@material-ui/core';
 import SuggestionButtons from './SuggestionButtons.jsx';
+import Slider from './BookTinder.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -99,25 +100,36 @@ class SuggestionView extends React.Component {
           </div>
         ) : (
           <div>
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            <Box
+              display="flex"
+              justifyContent="center"
+              m={1}
+              p={1}
+              bgcolor="background.paper"
             >
-              <img src={bookSuggestion.coverURL} alt="Smiley face" />
-            </div>
-            <br />
-            <Typography variant="h6">{bookSuggestion.title}</Typography>
-            <Typography variant="subtitle1">{bookSuggestion.author || null} </Typography>
-            <Typography variant="caption">{bookSuggestion.description}</Typography>
-            <br />
-            <br />
+              <Slider
+                handleNoClick={this.handleNoClick}
+                handleYesClick={this.handleYesClick}
+                book={
+                (
+                  <div>
+                    <Typography variant="h6">
+                      {bookSuggestion.title}
+                    </Typography>
+                    <img src={bookSuggestion.coverURL} alt="Smiley face" />
+                    <Typography variant="subtitle1">{bookSuggestion.author || null}
+                    </Typography>
+                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200) || 'No Description'}...
+                    </Typography>
+                  </div>
+                )
+              }
+              />
+            </Box>
             <div>
               <SuggestionButtons
                 handleNoClick={this.handleNoClick}
                 handleYesClick={this.handleYesClick}
-                // handleReadNowClick={this.handleReadNowClick}
               />
             </div>
           </div>
