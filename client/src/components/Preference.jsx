@@ -1,27 +1,66 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
+  root: {
+    display: 'flex',
+  },
+  formControl: {
+    margin: theme.spacing(3),
   },
 }));
 
-function LikeButton(props) {
+export default function SelectGenre() {
   const classes = useStyles();
+  const [state, setState] = React.useState({
+    Comedy: false,
+    Thriller: false,
+    Fantasy: false,
+    Romance: false,
+  });
+
+  const handleChange = (name) => (event) => {
+    setState({ ...state, [name]: event.target.checked });
+  };
+
+  const {
+    Comedy, Thriller, Fantasy, Romance,
+  } = state;
+
   return (
-    <div>
-      {/* centers the "not interested" and "interested" buttons */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Button variant="contained" size="large" color="primary" className={classes.button} onClick={() => props.handleYesClick()}>
-          Like
-        </Button>
-        <Button variant="contained" size="large" color="default" className={classes.button} onClick={() => props.handleNoClick()}>
-        Dislike
-        </Button>
-      </div>
+    <div className={classes.root}>
+      <FormControl component="fieldset" className={classes.formControl}>
+        <FormLabel component="legend">Pick Interested Genre</FormLabel>
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox checked={Comedy} onChange={handleChange('Comedy')} value="Comedy" />}
+            label="Comedy"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={Thriller} onChange={handleChange('Thriller')} value="Thriller" />}
+            label="Thriller"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox checked={Fantasy} onChange={handleChange('Fantasy')} value="Fantasy" />
+            }
+            label="Fantasy"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox checked={Romance} onChange={handleChange('Romance')} value="Romance" />
+            }
+            label="Romance"
+          />
+        </FormGroup>
+        <FormHelperText>Choose Wisely!</FormHelperText>
+      </FormControl>
     </div>
   );
 }
-export default LikeButton;

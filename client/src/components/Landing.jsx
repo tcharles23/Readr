@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Box } from '@material-ui/core';
-import LikeButton from './Preference.jsx';
+import SelectGenre from './Preference.jsx';
 
 function Landing() {
   return (
@@ -8,7 +8,7 @@ function Landing() {
       <Typography variant="body1" align="center">
         To get started, click the Explore Books link and we&apos;ll do the rest!
       </Typography>
-      <LikeButton />
+      <SelectGenre />
     </Box>
   );
 }
