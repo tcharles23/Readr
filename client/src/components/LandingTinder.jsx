@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 import { useGestureResponder } from 'react-gesture-responder';
 import { Heart } from 'react-feather';
 
-function Slider({ children }) {
+const genres = ['comedy', 'thriller', 'fantasy', 'romance'];
+
+function Slider(props) {
+  // extract card
+  const { book, handleNoClick, handleYesClick } = props;
+
   const [isLiking, setIsLiking] = React.useState(false);
   const [{ x }, set] = useSpring(() => ({ x: 0 }));
 
@@ -26,8 +32,10 @@ function Slider({ children }) {
       if (shouldLike(delta[0])) {
         // handle likes
         console.log('LIKE!');
+        handleYesClick();
       } else if (delta[0] > 200) {
         console.log('DISLIKE');
+        handleNoClick();
       }
 
       set({ x: 0, immediate: false });
@@ -87,11 +95,7 @@ function Slider({ children }) {
         }}
         className="sliding-pane"
       >
-        <div>
-          <h2>What do you like?</h2>
-          <h4>Swipe left to like</h4>
-          <h4>right to dislike</h4>
-        </div>
+        {book}
       </animated.div>
     </animated.div>
   );

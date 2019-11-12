@@ -11,7 +11,7 @@
 
 .sliding-pane {
   cursor: -webkit-grab;
-  background-color: #121212;
+  background-color: #37C5EF;
   color: rgba(255, 255, 255, 0.9);
   position: absolute;
   height: 100%;
@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   font-size: 1.25em;
   font-weight: 600;
 }
