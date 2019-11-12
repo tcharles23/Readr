@@ -7,7 +7,7 @@ import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress, Box } from '@material-ui/core';
 import SuggestionButtons from './SuggestionButtons.jsx';
-import Deck from './LandingTinder.jsx';
+import Slider from './BookTinder.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -107,7 +107,7 @@ class SuggestionView extends React.Component {
               p={1}
               bgcolor="background.paper"
             >
-              <Deck
+              <Slider
                 handleNoClick={this.handleNoClick}
                 handleYesClick={this.handleYesClick}
                 book={
@@ -119,7 +119,7 @@ class SuggestionView extends React.Component {
                     <img src={bookSuggestion.coverURL} alt="Smiley face" />
                     <Typography variant="subtitle1">{bookSuggestion.author || null}
                     </Typography>
-                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
+                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200) || 'No Description'}...
                     </Typography>
                   </div>
                 )
@@ -130,7 +130,6 @@ class SuggestionView extends React.Component {
               <SuggestionButtons
                 handleNoClick={this.handleNoClick}
                 handleYesClick={this.handleYesClick}
-                // handleReadNowClick={this.handleReadNowClick}
               />
             </div>
           </div>
