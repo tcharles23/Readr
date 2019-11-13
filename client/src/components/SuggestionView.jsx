@@ -6,6 +6,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress, Box } from '@material-ui/core';
+import Zoom from '@material-ui/core/Zoom';
 import SuggestionButtons from './SuggestionButtons.jsx';
 import Slider from './BookTinder.jsx';
 
@@ -117,40 +118,42 @@ class SuggestionView extends React.Component {
             <CircularProgress />
           </div>
         ) : (
-          <div>
-            <Box
-              display="flex"
-              justifyContent="center"
-              m={1}
-              p={1}
-              bgcolor="background.paper"
-            >
-              <Slider
-                handleNoClick={this.handleNoClick}
-                handleYesClick={this.handleYesClick}
-                book={
-                (
-                  <div>
-                    <Typography variant="h6">
-                      {bookSuggestion.title}
-                    </Typography>
-                    <img src={bookSuggestion.coverURL} alt="Smiley face" />
-                    <Typography variant="subtitle1">{bookSuggestion.author || null}
-                    </Typography>
-                    <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
-                    </Typography>
-                  </div>
-                )
-              }
-              />
-            </Box>
+          <Zoom in="true">
             <div>
-              <SuggestionButtons
-                handleNoClick={this.handleNoClick}
-                handleYesClick={this.handleYesClick}
-              />
+              <Box
+                display="flex"
+                justifyContent="center"
+                m={1}
+                p={1}
+                bgcolor="background.paper"
+              >
+                <Slider
+                  handleNoClick={this.handleNoClick}
+                  handleYesClick={this.handleYesClick}
+                  book={
+                      (
+                        <div>
+                          <Typography variant="h6">
+                            {bookSuggestion.title}
+                          </Typography>
+                          <img src={bookSuggestion.coverURL} alt="Smiley face" />
+                          <Typography variant="subtitle1">{bookSuggestion.author || null}
+                          </Typography>
+                          <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
+                          </Typography>
+                        </div>
+                      )
+                    }
+                />
+              </Box>
+              <div>
+                <SuggestionButtons
+                  handleNoClick={this.handleNoClick}
+                  handleYesClick={this.handleYesClick}
+                />
+              </div>
             </div>
-          </div>
+          </Zoom>
         )}
       </div>
     );

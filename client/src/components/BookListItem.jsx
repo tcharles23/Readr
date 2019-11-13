@@ -4,8 +4,9 @@
 */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Grid, Paper } from '@material-ui/core';
+import { Typography, Grid, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,14 @@ const useStyles = makeStyles((theme) => ({
 function BookListItem(props) {
   const classes = useStyles();
   const { book, handleRemoveClick, handleReadNow } = props;
+  const availabilityCheck = (book) => {
+    switch (book.availability) {
+      case 'open': return <Link to="/readnow">Read Now</Link>;
+      case 'borrow_available': return <Link to="/readnow">Preview</Link>;
+      default: return 'Sorry, no preview available';
+    }
+  };
+
   return (
     <div>
       <Paper className={classes.paper}>
@@ -53,10 +62,18 @@ function BookListItem(props) {
               </Grid>
               <Grid item>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
-                  Remove from To-Read List
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    className={classes.button}
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete
+                  </Button>
                 </Typography>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
-                  <Link to="/readnow">Read Now</Link>
+                  {availabilityCheck(book)}
                 </Typography>
               </Grid>
             </Grid>

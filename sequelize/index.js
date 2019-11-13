@@ -50,6 +50,7 @@ const Book = db.define('book', {
   },
   genre: Sequelize.STRING,
   urlSnippet: Sequelize.STRING,
+  availability: Sequelize.STRING,
 });
 
 // creating the field on the table
@@ -88,7 +89,7 @@ const UserPreference = db.define('user_preference', {
 });
 
 // { force: true } add into sync if db change is made
-db.sync().then(() => {
+db.sync({ force: true }).then(() => {
   console.log('connected to database');
 }).catch((err) => { console.log(err); });
 
