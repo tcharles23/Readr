@@ -26,9 +26,6 @@ const NavBar = (props) => {
   const firstName = username.split(' ')[0];
   return (
     <div>
-      <Typography variant="button" style={{ flex: 1, float: 'left' }}>
-        Welcome {firstName}!
-      </Typography>
       <AppBar color="primary" position="static">
         <Toolbar>
           <Typography>
@@ -46,6 +43,9 @@ const NavBar = (props) => {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Typography variant="button" style={{ flex: 1, float: 'left' }}>
+        Welcome {firstName}!
+      </Typography>
     </div>
   );
 };
