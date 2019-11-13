@@ -75,7 +75,7 @@ class BookListView extends React.Component {
         ) : (
           <div>
             <Typography variant="button">Your To-Read List:</Typography>
-            <Grid container spacing={1}>
+            <Grid container spacing={3} alignContent="center">
               {Object.keys(bookList).map((book) => (
                 <Grid container item xs={12} lg={6}>
                   <BookListItem book={bookList[book]} key={book.isbn} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
