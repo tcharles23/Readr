@@ -11,6 +11,7 @@ import {
   Button,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import WelcomeToast from './SnackBar.jsx';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
@@ -43,9 +44,7 @@ const NavBar = (props) => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Typography variant="button" style={{ flex: 1, float: 'left' }}>
-        Welcome {firstName}!
-      </Typography>
+      <WelcomeToast message={`Welcome, ${firstName}!`} />
     </div>
   );
 };
