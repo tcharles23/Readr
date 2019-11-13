@@ -5,6 +5,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,6 +14,14 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(3),
+  },
+
+  button: {
+    margin: theme.spacing(1),
+  },
+
+  input: {
+    display: 'none',
   },
 }));
 
@@ -58,6 +67,9 @@ export default function SelectGenre() {
             }
             label="Romance"
           />
+          <Button variant="contained" className={classes.button}>
+            Submit
+          </Button>
         </FormGroup>
         <FormHelperText>Choose Wisely!</FormHelperText>
       </FormControl>
