@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectGenre() {
+export default function SelectGenre({ user }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     Comedy: false,
@@ -41,7 +41,8 @@ export default function SelectGenre() {
 
   const handleSubmit = () => {
     const preferences = state;
-    axios.post('/genrePreference', preferences)
+    preferences.user = user;
+    axios.post('/readr/preferences', preferences)
       .catch((error) => {
         console.error('something went wrong', error);
       });

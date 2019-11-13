@@ -94,6 +94,7 @@ router.post('/unfollow/:followerID', (req, res) => {
 
 // Endpoint to update user preferences
 router.post('/preferences', (req, res) => {
+  console.log('req', req.body);
   const { userID, genre, toRead } = req.body;
   dbHelpers.updatePreferences(userID, genre, toRead)
     .then(() => {
