@@ -19,7 +19,6 @@ const authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req, res) => {
-  // console.log(req.user.id);
   res.send(`you are logged in as: ${req.user.username}`);
 });
 
@@ -110,7 +109,7 @@ router.post('/interest', (req, res) => {
     .then(() => {
       res.status(200).send('book added to user list');
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 });
 
 router.patch('/interest', (req, res) => {
@@ -121,7 +120,7 @@ router.patch('/interest', (req, res) => {
     .then(() => {
       res.status(200).send('book list updated');
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 });
 
 router.post('/booklist', (req, res) => {
@@ -130,6 +129,6 @@ router.post('/booklist', (req, res) => {
     .then((bookList) => {
       res.send(bookList);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 });
 module.exports = router;
