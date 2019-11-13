@@ -6,10 +6,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Grid, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-<<<<<<< HEAD
-=======
 import Button from '@material-ui/core/Button';
->>>>>>> ad95e759d2e623e25a5e5215b790831a83effc38
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
