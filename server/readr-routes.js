@@ -37,8 +37,8 @@ router.get('/suggestion', (req, res) => {
     .then((books) => {
       book.title = books.works[0].title;
       book.author = books.works[0].authors[0].name;
-      book.urlSnippet = books.works[0].lending_identifier;
-      // console.log(books.works[0].lending_identifier);
+      book.urlSnippet = books.works[0].ia;
+      book.availability = books.works[0].availability.status;
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
@@ -47,6 +47,7 @@ router.get('/suggestion', (req, res) => {
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
       book.title = bookInfo.title;
+      console.log(book);
       return dbHelpers.insertBook(book);
       // res.send(JSON.stringify(book));
     })
