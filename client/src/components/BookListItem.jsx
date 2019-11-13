@@ -4,9 +4,14 @@
 */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Grid, Paper, Button } from '@material-ui/core';
+import {
+  Typography, Grid, Paper, Button,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
+import MenuBookOutlinedIcon from '@material-ui/icons/MenuBookOutlined';
+import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import green from '@material-ui/core/colors/green';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,8 +39,42 @@ function BookListItem(props) {
   const { book, handleRemoveClick, handleReadNow } = props;
   const availabilityCheck = (book) => {
     switch (book.availability) {
-      case 'open': return <Link to="/readnow">Read Now</Link>;
-      case 'borrow_available': return <Link to="/readnow">Preview</Link>;
+      case 'open': return (
+        <Button
+          as={Link}
+          to="/readnow"
+          variant="contained"
+          // color="textPrimary"
+          size="small"
+          className={classes.button}
+          startIcon={<MenuBookOutlinedIcon />}
+        > Read Now
+        </Button>
+      );
+      case 'borrow_available': return (
+        <Button
+          as={Link}
+          to="/readnow"
+          variant="contained"
+          // color="textSecondary"
+          size="small"
+          className={classes.button}
+          startIcon={<MenuBookTwoToneIcon />}
+        > Preview
+        </Button>
+      );
+      case 'borrow_unavailable': return (
+        <Button
+          as={Link}
+          to="/readnow"
+          variant="contained"
+          // color="textSecondary"
+          size="small"
+          className={classes.button}
+          startIcon={<MenuBookTwoToneIcon />}
+        > Preview
+        </Button>
+      );
       default: return 'Sorry, no preview available';
     }
   };
@@ -60,7 +99,14 @@ function BookListItem(props) {
                   {book.genre}
                 </Typography>
               </Grid>
-              <Grid item>
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
+                  {availabilityCheck(book)}
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
                   <Button
                     variant="contained"
@@ -69,11 +115,8 @@ function BookListItem(props) {
                     className={classes.button}
                     startIcon={<DeleteIcon />}
                   >
-                    Delete
+                  Delete
                   </Button>
-                </Typography>
-                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
-                  {availabilityCheck(book)}
                 </Typography>
               </Grid>
             </Grid>
