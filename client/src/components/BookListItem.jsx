@@ -104,12 +104,9 @@ function BookListItem(props) {
             </Grid>
             <Grid container spacing={3}>
               <Grid item xs={4} lg={6}>
-                {/* <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}> */}
-                  {availabilityCheck(book)}
-                {/* </Typography> */}
+                {availabilityCheck(book)}
               </Grid>
               <Grid item xs={4}>
-                {/* <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}> */}
                 <Button
                   variant="contained"
                   color="primary"
@@ -120,7 +117,6 @@ function BookListItem(props) {
                 >
                   Delete
                 </Button>
-                {/* </Typography> */}
               </Grid>
             </Grid>
           </Grid>
