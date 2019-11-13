@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
   },
   image: {
-    width: 128,
-    height: 128,
+    width: 300,
+    height: 250,
   },
   img: {
     margin: 'auto',
@@ -82,7 +82,7 @@ function BookListItem(props) {
     <div>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
-          <Grid item>
+          <Grid item className={classes.image}>
             <img className={classes.img} alt="complex" src={book.coverURL} />
           </Grid>
           <Grid item xs={12} sm container>
@@ -99,24 +99,25 @@ function BookListItem(props) {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
+            <Grid container spacing={3}>
+              <Grid item xs={4} lg={6}>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
                   {availabilityCheck(book)}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
-                <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className={classes.button}
-                    startIcon={<DeleteIcon />}
-                  >
+                {/* <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleRemoveClick(book.isbn, false)}> */}
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  className={classes.button}
+                  startIcon={<DeleteIcon />}
+                  onClick={() => handleRemoveClick(book.isbn, false)}
+                >
                   Delete
-                  </Button>
-                </Typography>
+                </Button>
+                {/* </Typography> */}
               </Grid>
             </Grid>
           </Grid>

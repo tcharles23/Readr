@@ -74,11 +74,11 @@ class BookListView extends React.Component {
           </div>
         ) : (
           <div>
-              <Typography variant="button">Your To-Read List:</Typography>
-              <Grid container spacing={1}>
+            <Typography variant="button">Your To-Read List:</Typography>
+            <Grid container spacing={1}>
               {Object.keys(bookList).map((book) => (
                 <Grid container item xs={12} lg={6}>
-                <BookListItem book={bookList[book]} key={book.isbn} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
+                  <BookListItem book={bookList[book]} key={book.isbn} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
                 </Grid>
               ))}
             </Grid>
