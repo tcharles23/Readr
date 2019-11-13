@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MenuBookOutlinedIcon from '@material-ui/icons/MenuBookOutlined';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
-import green from '@material-ui/core/colors/green';
 
 const useStyles = makeStyles((theme) => ({
   root: {
