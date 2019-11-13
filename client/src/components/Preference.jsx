@@ -6,6 +6,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +39,14 @@ export default function SelectGenre() {
     setState({ ...state, [name]: event.target.checked });
   };
 
+  const handleSubmit = () => {
+    const preferences = state;
+    axios.post('/genrePreference', preferences)
+      .catch((error) => {
+        console.error('something went wrong', error);
+      });
+  };
+
   const {
     Comedy, Thriller, Fantasy, Romance,
   } = state;
@@ -67,7 +76,7 @@ export default function SelectGenre() {
             }
             label="Romance"
           />
-          <Button variant="contained" className={classes.button}>
+          <Button variant="contained" className={classes.button} onClick={handleSubmit}>
             Submit
           </Button>
         </FormGroup>
