@@ -47,7 +47,6 @@ router.get('/suggestion', (req, res) => {
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
       book.title = bookInfo.title;
-      console.log(book);
       return dbHelpers.insertBook(book);
       // res.send(JSON.stringify(book));
     })

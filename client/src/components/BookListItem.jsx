@@ -6,7 +6,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Typography, Grid, Paper, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,9 +34,9 @@ function BookListItem(props) {
   const { book, handleRemoveClick, handleReadNow } = props;
   const availabilityCheck = (book) => {
     switch (book.availability) {
-      case "open": return <Link to="/readnow">Read Now</Link>;
-      case "borrow_available": return <Link to="/readnow">Preview</Link>;
-      default: return <p>Sorry, no preview available</p>;
+      case 'open': return <Link to="/readnow">Read Now</Link>;
+      case 'borrow_available': return <Link to="/readnow">Preview</Link>;
+      default: return 'Sorry, no preview available';
     }
   };
 
@@ -74,7 +73,6 @@ function BookListItem(props) {
                   </Button>
                 </Typography>
                 <Typography color="primary" variant="body2" style={{ cursor: 'pointer' }} onClick={() => handleReadNow(book.urlSnippet)}>
-                  {/* {book.availability === "open" ? <Link to="/readnow">Read Now</Link> : null} */}
                   {availabilityCheck(book)}
                 </Typography>
               </Grid>
