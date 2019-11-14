@@ -64,7 +64,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, user, userBookList, urlSnippet } = this.state;
+    const {
+      isLoggedIn, user, userBookList, urlSnippet,
+    } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
