@@ -48,6 +48,10 @@ const Book = db.define('book', {
     type: Sequelize.STRING,
     unique: true,
   },
+  buyLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
   genre: Sequelize.STRING,
   urlSnippet: Sequelize.STRING,
   availability: Sequelize.STRING,
