@@ -37,6 +37,7 @@ function BookListItem(props) {
   const classes = useStyles();
   const { book, handleRemoveClick, handleReadNow } = props;
   const availabilityCheck = (book) => {
+    console.log(book.buyList);
     switch (book.availability) {
       case 'open': return (
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
@@ -81,6 +82,40 @@ function BookListItem(props) {
     }
   };
 
+  // const { book } = props;
+  const buyNow = (book) => {
+    // console.log(book);
+    switch (book.buyList) {
+      case 'open': return (
+        <Link to="/readnow" style={{ textDecoration: 'none' }}>
+          <Button
+            variant="contained"
+            // color="textPrimary"
+            size="small"
+            href={book.buyList}
+          >Read Now
+          </Button>
+        </Link>
+      );
+      case 'borrow_available': return (
+        <Link to="/readnow" style={{ textDecoration: 'none' }}>
+          <Button
+            variant="contained"
+            // color="textSecondary"
+            size="small"
+            className={classes.button}
+            startIcon={<MenuBookTwoToneIcon />}
+            onClick={() => handleReadNow(book.urlSnippet)}
+          > Preview
+          </Button>
+        </Link>
+      );
+
+      default: return 'Sorry, cant buy';
+    }
+  };
+
+
   return (
     <Paper className={classes.paper}>
       <Grid container>
@@ -102,6 +137,9 @@ function BookListItem(props) {
       <Grid container spacing={2}>
         <Grid item>
           {availabilityCheck(book)}
+        </Grid>
+        <Grid item>
+          {buyNow(book)}
         </Grid>
         <Grid item>
           <Button
