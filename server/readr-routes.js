@@ -95,14 +95,16 @@ router.post('/unfollow/:followerID', (req, res) => {
 
 // Endpoint to update user preferences
 router.post('/preferences', (req, res) => {
-  console.log('req', req.body);
-  console.log('genreC', req.body.Comedy);
-  console.log('user', req.body.user.id);
-  // const { userID, genre, toRead } = req.body;
-  // dbHelpers.updatePreferences(userID, genre, toRead)
-  //   .then(() => {
-  //     res.send(201);
-  //   });
+  // console.log('body', req.body);
+  // console.log('user', req.body.user.id);
+  const userID = req.body.user.id;
+  const genres = Object.keys(req.body).slice(0, Object.keys(req.body).length - 1);
+  // console.log('genres', genres);
+  genres.forEach((genre) => {
+    const toRead = req.body[genre];
+    // console.log('toRead', toRead);
+    dbHelpers.updatePreferences(userID, genre, toRead);
+  });
 });
 
 router.post('/interest', (req, res) => {
