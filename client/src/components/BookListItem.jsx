@@ -42,7 +42,6 @@ function BookListItem(props) {
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
-            // color="textPrimary"
             size="small"
             className={classes.button}
             startIcon={<MenuBookOutlinedIcon />}
@@ -55,7 +54,6 @@ function BookListItem(props) {
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
-            // color="textSecondary"
             size="small"
             className={classes.button}
             startIcon={<MenuBookTwoToneIcon />}
@@ -68,7 +66,7 @@ function BookListItem(props) {
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
-            // color="textSecondary"
+            color="primary"
             size="small"
             className={classes.button}
             startIcon={<MenuBookTwoToneIcon />}
@@ -80,6 +78,24 @@ function BookListItem(props) {
       default: return 'Sorry, no preview available';
     }
   };
+
+  const buyNow = (book) => {
+    console.log(book.buyLink);
+    return book.buyLink ? (
+      <Grid item>
+        <Button
+          target="_blank"
+          href={book.buyLink}
+          variant="contained"
+          color="secondary"
+          size="small"
+        >Buy Now
+        </Button>
+      </Grid>
+    )
+      : null;
+  };
+
 
   return (
     <Paper className={classes.paper}>
@@ -103,6 +119,7 @@ function BookListItem(props) {
         <Grid item>
           {availabilityCheck(book)}
         </Grid>
+        {buyNow(book)}
         <Grid item>
           <Button
             variant="contained"

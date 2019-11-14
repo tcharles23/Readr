@@ -26,6 +26,7 @@ const getInfo = (title, author) => axios.get('https://www.googleapis.com/books/v
     bookInfo.description = bookData.data.items[0].volumeInfo.description || null;
     bookInfo.coverURL = bookData.data.items[0].volumeInfo.imageLinks.thumbnail || null;
     bookInfo.title = bookData.data.items[0].volumeInfo.title || null;
+    bookInfo.buyLink = bookData.data.items[0].saleInfo.buyLink || null;
     return bookInfo;
   })
   .catch((err) => {

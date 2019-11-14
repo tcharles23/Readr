@@ -38,14 +38,15 @@ router.get('/suggestion', (req, res) => {
       book.author = books.works[0].authors[0].name;
       book.urlSnippet = books.works[0].ia;
       book.availability = books.works[0].availability.status;
+      book.buyLink = books.works[0].saleInfo;
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      // console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
       book.title = bookInfo.title;
+      book.buyLink = bookInfo.buyLink;
       return dbHelpers.insertBook(book);
       // res.send(JSON.stringify(book));
     })
