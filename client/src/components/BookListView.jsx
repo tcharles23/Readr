@@ -58,6 +58,7 @@ class BookListView extends React.Component {
 
   render() {
     const { bookList } = this.state;
+    console.log(bookList);
     return (
       // map over the userbooklist and render each an bookListItem
       <div>
