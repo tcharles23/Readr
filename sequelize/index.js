@@ -86,10 +86,10 @@ const UserBook = db.define('user_book', {
 
 const UserPreference = db.define('user_preference', {
   userID: Sequelize.INTEGER,
-  comedy: Sequelize.FLOAT,
-  thriller: Sequelize.FLOAT,
-  fantasy: Sequelize.FLOAT,
-  romance: Sequelize.FLOAT,
+  Comedy: Sequelize.FLOAT,
+  Thriller: Sequelize.FLOAT,
+  Fantasy: Sequelize.FLOAT,
+  Romance: Sequelize.FLOAT,
 });
 
 // { force: true } add into sync if db change is made
