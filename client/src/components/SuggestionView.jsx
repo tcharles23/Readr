@@ -5,10 +5,11 @@
  */
 import React from 'react';
 import axios from 'axios';
-import { Typography, CircularProgress, Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 import Zoom from '@material-ui/core/Zoom';
 import SuggestionButtons from './SuggestionButtons.jsx';
 import Slider from './BookTinder.jsx';
+import LoadingSuggestion from './SuggestionView/LoadingSuggestion.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -107,16 +108,7 @@ class SuggestionView extends React.Component {
       <div>
         {/* Spinner until component mounts and sets state */}
         {bookSuggestion === null ? (
-          <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '40%',
-              transform: 'translate(-50%, -40%)',
-            }}
-          >
-            <CircularProgress />
-          </div>
+          <LoadingSuggestion />
         ) : (
           <Zoom in="true">
             <div>
