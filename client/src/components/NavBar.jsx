@@ -27,9 +27,12 @@ const NavBar = (props) => {
   const firstName = username.split(' ')[0];
   return (
     <div>
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="fixed">
         <Toolbar>
-          <Typography>
+          <Typography variant="h4" align="left">
+            Readr 2.0
+          </Typography>
+          <Typography align="right">
             <Button size="large" component={Link} to="/suggestion" className={classes.button}>
               Explore Books
             </Button>
@@ -40,7 +43,13 @@ const NavBar = (props) => {
               Following
             </Button>
             {/* This directs to passport auth logout */}
-            <Button size="large" href="/auth/logout" className={classes.button}>Logout</Button>
+            <Button
+              size="large"
+              href="/auth/logout"
+              className={classes.button}
+            >
+              Logout
+            </Button>
           </Typography>
         </Toolbar>
       </AppBar>
