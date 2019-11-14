@@ -126,10 +126,10 @@ function LoginBookItem(props) {
             <FormControlLabel
               control={<Switch checked={checked} onChange={toggleCheckedItem} />}
               label="Description"
-              labelPlacement="top"
+              labelPlacement="end"
             />
             <Box display={checked ? 'block' : 'none'}>
-              <Typography variant="body2">
+              <Typography variant="body2" style={{ height: 150, overflow: "auto" }}>
                 {book.description}
               </Typography>
             </Box>
