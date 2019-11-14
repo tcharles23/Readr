@@ -75,7 +75,6 @@ class BookListView extends React.Component {
           </div>
         ) : (
           <div>
-            <Typography variant="button">Your To-Read List:</Typography>
             <Grid container spacing={2}>
               {Object.keys(bookList).map((book) => (
                 <Grid item xs={12} sm={12} md={6}>
