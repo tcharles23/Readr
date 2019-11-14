@@ -38,6 +38,11 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     textDecoration: 'none',
   },
+  bigBar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
 }));
 
 const NavBar = (props) => {
@@ -67,7 +72,9 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
-          <BigBar />
+          <div className={classes.bigBar}>
+            <BigBar />
+          </div>
           <SmallBar />
         </Toolbar>
       </AppBar>
