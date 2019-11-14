@@ -10,6 +10,7 @@ import Zoom from '@material-ui/core/Zoom';
 import SuggestionButtons from './SuggestionButtons.jsx';
 import Slider from './BookTinder.jsx';
 import LoadingSuggestion from './SuggestionView/LoadingSuggestion.jsx';
+import Book from './SuggestionView/Book.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -122,20 +123,7 @@ class SuggestionView extends React.Component {
                 <Slider
                   handleNoClick={this.handleNoClick}
                   handleYesClick={this.handleYesClick}
-                  book={
-                      (
-                        <div>
-                          <Typography variant="h6">
-                            {bookSuggestion.title}
-                          </Typography>
-                          <img src={bookSuggestion.coverURL} alt="Smiley face" />
-                          <Typography variant="subtitle1">{bookSuggestion.author || null}
-                          </Typography>
-                          <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
-                          </Typography>
-                        </div>
-                      )
-                    }
+                  book={<Book bookSuggestion={bookSuggestion} />}
                 />
               </Box>
               <div>
