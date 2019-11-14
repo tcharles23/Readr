@@ -21,7 +21,7 @@ const getInfo = (title, author) => axios.get('https://www.googleapis.com/books/v
   },
 })
   .then((bookData) => {
-    console.log(bookData.data.items[0].saleInfo.buyLink, 'buyyyy linkkkkk');
+    console.log(bookData.data.items[0].saleInfo.buyLink, 'buyyyy linkkkkk from APIIII');
     const bookInfo = {};
     bookInfo.isbn = bookData.data.items[0].volumeInfo.industryIdentifiers[0].identifier || null;
     bookInfo.description = bookData.data.items[0].volumeInfo.description || null;
