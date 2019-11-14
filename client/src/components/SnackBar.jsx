@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleSnackbar(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const { message } = props;
 
   React.useEffect(() => {
     setOpen(true);
@@ -24,16 +25,16 @@ export default function SimpleSnackbar(props) {
   return (
       <Snackbar
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
+          vertical: 'bottom',
+          horizontal: 'right',
         }}
         open={open}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={handleClose}
         ContentProps={{
           'aria-describedby': 'message-id',
         }}
-        message={<span id="message-id">{props.message}</span>}
+        message={<span id="message-id">{message}</span>}
       />
   );
 }
