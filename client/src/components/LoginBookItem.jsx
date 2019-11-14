@@ -2,14 +2,19 @@
 * Renders a thumbnail image, the title, author, genre, short description, date added.
 * buttons to remove from list, move to another list, and read now
 */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Typography, Grid, Paper, Button,
+  Typography, Grid, Paper, Button, Box,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuBookOutlinedIcon from '@material-ui/icons/MenuBookOutlined';
 import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+import Switch from '@material-ui/core/Switch';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
 function LoginBookItem(props) {
   const classes = useStyles();
   const { book, handleReadNow } = props;
+  const [checked, setChecked] = useState(false);
+  // const [show, setShow] = useState('hide');
+
   const availabilityCheck = (book) => {
     switch (book.availability) {
       case 'open': return (
@@ -78,18 +86,23 @@ function LoginBookItem(props) {
     }
   };
 
-  const buyNow = (book) => {
-    return book.buyLink ? (
-      <Button
-        target="_blank"
-        href={book.buyLink}
-        variant="contained"
-        color="secondary"
-        size="small"
-      >Buy Now
-      </Button>
-    )
-      : null;
+  // const buyNow = (book) => {
+  //   return book.buyLink ? (
+  //     <Button
+  //       target="_blank"
+  //       href={book.buyLink}
+  //       variant="contained"
+  //       color="secondary"
+  //       size="small"
+  //     >Buy Now
+  //     </Button>
+  //   )
+  //     : null;
+  // };
+
+  const toggleCheckedItem = () => {
+    setChecked(!checked);
+    // setShow(show === 'hide' ? 'block' : 'hide');
   };
 
 
@@ -109,13 +122,24 @@ function LoginBookItem(props) {
           <Typography variant="body2" color="textSecondary">
             {book.genre}
           </Typography>
+          <Grid item lg={12}>
+            <FormControlLabel
+              control={<Switch checked={checked} onChange={toggleCheckedItem} />}
+              label="Description"
+              labelPlacement="top"
+            />
+            <Box display={checked ? 'block' : 'none'}>
+              <Typography variant="body2">
+                {book.description}
+              </Typography>
+            </Box>
+          </Grid>
+          {/* <Grid item>
+            {buyNow(book)}
+          </Grid> */}
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-        {/* <Grid item>
-          {buyNow(book)}
-        </Grid> */}
-      </Grid>
+      <Grid container spacing={2} />
     </Paper>
   );
 }

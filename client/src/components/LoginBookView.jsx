@@ -105,6 +105,7 @@ class LoginBookView extends React.Component {
                     key={book.isbn}
                     handleRemoveClick={this.handleRemoveClick}
                     handleReadNow={this.handleReadNow}
+                    toggleChecked={this.toggleChecked}
                   />
                 </Grid>
               ))}
