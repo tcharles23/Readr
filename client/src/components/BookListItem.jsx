@@ -42,7 +42,6 @@ function BookListItem(props) {
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
-            color="primary"
             size="small"
             className={classes.button}
             startIcon={<MenuBookOutlinedIcon />}
@@ -55,7 +54,6 @@ function BookListItem(props) {
         <Link to="/readnow" style={{ textDecoration: 'none' }}>
           <Button
             variant="contained"
-            color="primary"
             size="small"
             className={classes.button}
             startIcon={<MenuBookTwoToneIcon />}
@@ -84,16 +82,18 @@ function BookListItem(props) {
   const buyNow = (book) => {
     console.log(book.buyLink);
     return book.buyLink ? (
-      <Button
-        target="_blank"
-        href={book.buyLink}
-        variant="contained"
-        color="primary"
-        size="small"
-      >Buy Now
-      </Button>
+      <Grid item>
+        <Button
+          target="_blank"
+          href={book.buyLink}
+          variant="contained"
+          color="secondary"
+          size="small"
+        >Buy Now
+        </Button>
+      </Grid>
     )
-      : 'Sorry, cant buy';
+      : null;
   };
 
 
@@ -119,9 +119,7 @@ function BookListItem(props) {
         <Grid item>
           {availabilityCheck(book)}
         </Grid>
-        <Grid item>
-          {buyNow(book)}
-        </Grid>
+        {buyNow(book)}
         <Grid item>
           <Button
             variant="contained"
