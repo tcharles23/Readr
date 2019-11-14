@@ -72,40 +72,35 @@ class App extends React.Component {
         <div className="App">
           {/* this container centers content on the page. Width is inherited by the rest of app. */}
           <Container component="main" maxWidth="lg">
-            <br />
-            <Typography variant="h2" align="center"> Readr </Typography>
-            <br />
-            <br />
             <div>
               {isLoggedIn === false ? (<Login />) : null }
             </div>
             {/* conditional rendering of the components based on if the user is logged in */}
             {isLoggedIn ? (
               <div>
-                <header>
-                  <NavBar user={user} />
-                </header>
-                <br />
-                <Switch>
-                  {/* // this is our default route */}
-                  <Route
-                    exact
-                    path="/"
-                    render={(props) => (
-                      <Landing {...props} user={user} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/suggestion"
-                    render={(props) => (
-                      <SuggestionView {...props} user={user} />)}
-                  />
-                  <Route exact path="/following" component={FollowingView} />
-                  {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
-                  <Route exact path="/booklist" render={(props) => <BookListView {...props} user={user} updateUrlSnippet={this.updateUrlSnippet} />} />
-                  <Route exact path="/readnow" render={(props) => <ReaderView {...props} urlSnippet={urlSnippet} />} />
-                </Switch>
+                <NavBar user={user} />
+                <div className="mainViews">
+                  <Switch>
+                    {/* // this is our default route */}
+                    <Route
+                      exact
+                      path="/"
+                      render={(props) => (
+                        <Landing {...props} user={user} />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/suggestion"
+                      render={(props) => (
+                        <SuggestionView {...props} user={user} />)}
+                    />
+                    <Route exact path="/following" component={FollowingView} />
+                    {/* HOW TO PASS PROPS IN REACT ROUTE v4. ESLINT DISLIKES IT */}
+                    <Route exact path="/booklist" render={(props) => <BookListView {...props} user={user} updateUrlSnippet={this.updateUrlSnippet} />} />
+                    <Route exact path="/readnow" render={(props) => <ReaderView {...props} urlSnippet={urlSnippet} />} />
+                  </Switch>
+                </div>
               </div>
             ) : null }
           </Container>
