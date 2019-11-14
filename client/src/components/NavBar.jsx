@@ -1,4 +1,3 @@
-/* eslint-disable spaced-comment */
 /* This is the header or top bar component.  It is pretty static.
  * Includes navigatin.buttons- App logo Title  2..button to "To-Read" list,
  * 3. "Explore Books" (new book suggestion), 4. Logout button.
@@ -15,6 +14,7 @@ import {
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
 import WelcomeToast from './SnackBar.jsx';
+import BigBar from './NavBarMenus/BigBar.jsx';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
@@ -66,37 +66,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
-          <Button
-            size="large"
-            component={Link}
-            to="/suggestion"
-            className={classes.button}
-          >
-            Explore Books
-          </Button>
-          <Button
-            size="large"
-            component={Link}
-            to="/booklist"
-            className={classes.button}
-          >
-            To-Read
-          </Button>
-          <Button
-            size="large"
-            component={Link}
-            to="/following"
-            className={classes.button}
-          >
-            Following
-          </Button>
-          <Button
-            size="large"
-            href="/auth/logout"
-            className={classes.button}
-          >
-            Logout
-          </Button>
+          <BigBar />
         </Toolbar>
       </AppBar>
     </div>
@@ -104,4 +74,3 @@ const NavBar = (props) => {
 };
 
 export default NavBar;
-
