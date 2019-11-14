@@ -103,7 +103,7 @@ function BookListItem(props) {
         <Grid item>
           {availabilityCheck(book)}
         </Grid>
-        <Grid item xs={4}>
+        <Grid item>
           <Button
             variant="contained"
             color="primary"
