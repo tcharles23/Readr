@@ -34,7 +34,7 @@ router.get('/suggestion', (req, res) => {
     .then((books) => categorySearch(book.genre, selectBook(books.ebook_count)))
     // Get total book count & Send request with offset set to a random number from the count
     .then((books) => {
-      // console.log(books.works[0], 'bokokokokokoko');
+      console.log(books.works[0].saleInfo, 'bokokokokokoko');
       book.title = books.works[0].title;
       book.author = books.works[0].authors[0].name;
       book.urlSnippet = books.works[0].ia;
