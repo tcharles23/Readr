@@ -82,47 +82,41 @@ function BookListItem(props) {
   };
 
   return (
-    <div>
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item className={classes.image}>
-            <img className={classes.img} alt="complex" src={book.coverURL} />
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                  {book.title}
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  {book.author}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {book.genre}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={3}>
-              <Grid item xs={4} lg={6}>
-                {availabilityCheck(book)}
-              </Grid>
-              <Grid item xs={4}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="small"
-                  className={classes.button}
-                  startIcon={<DeleteIcon />}
-                  onClick={() => handleRemoveClick(book.isbn, false)}
-                >
-                  Delete
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
+    <Paper className={classes.paper}>
+      <Grid container>
+        <Grid item md={5} className={classes.image}>
+          <img className={classes.img} alt="complex" src={book.coverURL} />
         </Grid>
-      </Paper>
-    </div>
+        <Grid item md={7}>
+          <Typography gutterBottom variant="subtitle1">
+            {book.title}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {book.author}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {book.genre}
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        <Grid item>
+          {availabilityCheck(book)}
+        </Grid>
+        <Grid item>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+            onClick={() => handleRemoveClick(book.isbn, false)}
+          >
+            Delete
+          </Button>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 
