@@ -37,7 +37,7 @@ function BookListItem(props) {
   const classes = useStyles();
   const { book, handleRemoveClick, handleReadNow } = props;
   const availabilityCheck = (book) => {
-    console.log(book.buyList);
+    console.log(book);
     switch (book.availability) {
       case 'open': return (
         <Link to="/readnow" style={{ textDecoration: 'none' }}>

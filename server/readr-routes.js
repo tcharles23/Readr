@@ -34,16 +34,16 @@ router.get('/suggestion', (req, res) => {
     .then((books) => categorySearch(book.genre, selectBook(books.ebook_count)))
     // Get total book count & Send request with offset set to a random number from the count
     .then((books) => {
-      // console.log(books.works[0], 'ngngngng');
+      // console.log(books, 'ngngngng');
       book.title = books.works[0].title;
       book.author = books.works[0].authors[0].name;
       book.urlSnippet = books.works[0].ia;
       book.availability = books.works[0].availability.status;
-      book.buyLink = books.works[0].buyLink;
+      // book.buyLink = books.works[0].buyLink;
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      console.log(bookInfo, 'inserttt book');
+      console.log(bookInfo.buyLink, 'inserttt link');
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
