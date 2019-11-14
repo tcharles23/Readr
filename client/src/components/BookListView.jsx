@@ -4,9 +4,8 @@
  */
 import React from 'react';
 import axios from 'axios';
-import { Typography, CircularProgress, Grid, Button } from '@material-ui/core';
+import { Typography, CircularProgress, Grid } from '@material-ui/core';
 import BookListItem from './BookListItem.jsx';
-import { Link } from 'react-router-dom';
 
 class BookListView extends React.Component {
   constructor(props) {
@@ -76,10 +75,15 @@ class BookListView extends React.Component {
         ) : (
           <div>
             <Typography variant="button">Your To-Read List:</Typography>
-            <Grid container spacing={3} alignContent="center">
+            <Grid container spacing={2}>
               {Object.keys(bookList).map((book) => (
-                <Grid container item xs={12} lg={6}>
-                  <BookListItem book={bookList[book]} key={book.isbn} handleRemoveClick={this.handleRemoveClick} handleReadNow={this.handleReadNow} />
+                <Grid item xs={12} sm={12} md={6}>
+                  <BookListItem
+                    book={bookList[book]}
+                    key={book.isbn}
+                    handleRemoveClick={this.handleRemoveClick}
+                    handleReadNow={this.handleReadNow}
+                  />
                 </Grid>
               ))}
             </Grid>

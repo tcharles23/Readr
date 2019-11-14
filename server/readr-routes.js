@@ -43,7 +43,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      // console.log(bookInfo);
+      console.log(bookInfo.buyLink, 'inserttt link');
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
