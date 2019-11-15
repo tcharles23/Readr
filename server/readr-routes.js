@@ -95,15 +95,10 @@ router.post('/unfollow/:followerID', (req, res) => {
 
 // Endpoint to update user preferences
 router.post('/preferences', (req, res) => {
-  console.log('req', req.body);
+  // console.log('req', req.body);
 
   const userID = req.body.user.id;
   const genres = Object.keys(req.body).slice(0, Object.keys(req.body).length - 1);
-  const values = Object.values(req.body).slice(0, Object.values(req.body).length - 1);
-
-  console.log('genres', genres);
-  console.log('values', values);
-
 
   // const { userID, genre, toRead } = req.body;
 
