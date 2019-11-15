@@ -98,8 +98,8 @@ class LoginBookView extends React.Component {
           <div>
             <Typography variant="button">What's trending among users</Typography>
             <Grid container spacing={2}>
-              {Object.keys(bookList).map((book) => (
-                <Grid item xs={12} sm={12} md={6}>
+              {Object.keys(bookList).map((book, i) => (
+                <Grid key={i} item xs={12} sm={12} md={6}>
                   <LoginBookItem
                     book={bookList[book]}
                     key={book.isbn}
