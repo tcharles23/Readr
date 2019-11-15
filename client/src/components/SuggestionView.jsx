@@ -110,7 +110,7 @@ class SuggestionView extends React.Component {
         {bookSuggestion === null ? (
           <LoadingSuggestion />
         ) : (
-          <Zoom in="true">
+          <Zoom in>
             <Grid container align="center">
               <Grid item xs={12}>
                 <Slider

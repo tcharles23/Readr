@@ -39,41 +39,46 @@ function BookListItem(props) {
   const availabilityCheck = (book) => {
     switch (book.availability) {
       case 'open': return (
-        <Link to="/readnow" style={{ textDecoration: 'none' }}>
-          <Button
-            variant="contained"
-            size="small"
-            className={classes.button}
-            startIcon={<MenuBookOutlinedIcon />}
-            onClick={() => handleReadNow(book.urlSnippet)}
-          >Read Now
-          </Button>
-        </Link>
+        <Grid item>
+          <Link to="/readnow" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.button}
+              startIcon={<MenuBookOutlinedIcon />}
+              onClick={() => handleReadNow(book.urlSnippet)}
+            >Read Now
+            </Button>
+          </Link>
+        </Grid>
       );
       case 'borrow_available': return (
-        <Link to="/readnow" style={{ textDecoration: 'none' }}>
-          <Button
-            variant="contained"
-            size="small"
-            className={classes.button}
-            startIcon={<MenuBookTwoToneIcon />}
-            onClick={() => handleReadNow(book.urlSnippet)}
-          > Preview
-          </Button>
-        </Link>
+        <Grid item>
+          <Link to="/readnow" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.button}
+              startIcon={<MenuBookTwoToneIcon />}
+              onClick={() => handleReadNow(book.urlSnippet)}
+            > Preview
+            </Button>
+          </Link>
+        </Grid>
       );
       case 'borrow_unavailable': return (
-        <Link to="/readnow" style={{ textDecoration: 'none' }}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            className={classes.button}
-            startIcon={<MenuBookTwoToneIcon />}
-            onClick={() => handleReadNow(book.urlSnippet)}
-          > Preview
-          </Button>
-        </Link>
+        <Grid item>
+          <Link to="/readnow" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="contained"
+              size="small"
+              className={classes.button}
+              startIcon={<MenuBookTwoToneIcon />}
+              onClick={() => handleReadNow(book.urlSnippet)}
+            > Preview
+            </Button>
+          </Link>
+        </Grid>
       );
       default: return null;
     }
@@ -115,9 +120,7 @@ function BookListItem(props) {
         </Grid>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item>
-          {availabilityCheck(book)}
-        </Grid>
+        {availabilityCheck(book)}
         {buyNow(book)}
         <Grid item>
           <Button
