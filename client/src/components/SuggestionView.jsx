@@ -5,10 +5,11 @@
  */
 import React from 'react';
 import axios from 'axios';
-import { Typography, CircularProgress, Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Zoom from '@material-ui/core/Zoom';
-import SuggestionButtons from './SuggestionButtons.jsx';
 import Slider from './BookTinder.jsx';
+import LoadingSuggestion from './SuggestionView/LoadingSuggestion.jsx';
+import Book from './SuggestionView/Book.jsx';
 
 class SuggestionView extends React.Component {
   constructor(props) {
@@ -107,52 +108,26 @@ class SuggestionView extends React.Component {
       <div>
         {/* Spinner until component mounts and sets state */}
         {bookSuggestion === null ? (
-          <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: '40%',
-              transform: 'translate(-50%, -40%)',
-            }}
-          >
-            <CircularProgress />
-          </div>
+          <LoadingSuggestion />
         ) : (
           <Zoom in="true">
-            <div>
-              <Box
-                display="flex"
-                justifyContent="center"
-                m={1}
-                p={1}
-                bgcolor="background.paper"
-              >
+            <Grid container align="center">
+              <Grid item xs={12}>
                 <Slider
                   handleNoClick={this.handleNoClick}
                   handleYesClick={this.handleYesClick}
-                  book={
-                      (
-                        <div>
-                          <Typography variant="h6">
-                            {bookSuggestion.title}
-                          </Typography>
-                          <img src={bookSuggestion.coverURL} alt="Smiley face" />
-                          <Typography variant="subtitle1">{bookSuggestion.author || null}
-                          </Typography>
-                          <Typography variant="caption">       {bookSuggestion.description.slice(0, 200)}...
-                          </Typography>
-                        </div>
-                      )
-                    }
+                  book={(
+                    <div>
+                      <Book
+                        bookSuggestion={bookSuggestion}
+                        handleNoClick={this.handleNoClick}
+                        handleYesClick={this.handleYesClick}
+                      />
+                    </div>
+                  )}
                 />
-              </Box>
-              <div>
-                <SuggestionButtons
-                  handleNoClick={this.handleNoClick}
-                  handleYesClick={this.handleYesClick}
-                />
-              </div>
-            </div>
+              </Grid>
+            </Grid>
           </Zoom>
         )}
       </div>

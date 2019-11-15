@@ -30,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
 export default function SelectGenre({ user }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    Comedy: false,
-    Thriller: false,
-    Fantasy: false,
-    Romance: false,
+    comedy: false,
+    thriller: false,
+    fantasy: false,
+    romance: false,
   });
 
   const handleChange = (name) => (event) => {
@@ -50,7 +50,7 @@ export default function SelectGenre({ user }) {
   };
 
   const {
-    Comedy, Thriller, Fantasy, Romance,
+    comedy, thriller, fantasy, romance,
   } = state;
 
   return (
@@ -59,22 +59,22 @@ export default function SelectGenre({ user }) {
         <FormLabel component="legend">Pick Interested Genre</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={Comedy} onChange={handleChange('Comedy')} value="Comedy" />}
+            control={<Checkbox checked={comedy} onChange={handleChange('comedy')} value="comedy" />}
             label="Comedy"
           />
           <FormControlLabel
-            control={<Checkbox checked={Thriller} onChange={handleChange('Thriller')} value="Thriller" />}
+            control={<Checkbox checked={thriller} onChange={handleChange('thriller')} value="thriller" />}
             label="Thriller"
           />
           <FormControlLabel
             control={
-              <Checkbox checked={Fantasy} onChange={handleChange('Fantasy')} value="Fantasy" />
+              <Checkbox checked={fantasy} onChange={handleChange('fantasy')} value="fantasy" />
             }
             label="Fantasy"
           />
           <FormControlLabel
             control={
-              <Checkbox checked={Romance} onChange={handleChange('Romance')} value="Romance" />
+              <Checkbox checked={romance} onChange={handleChange('romance')} value="romance" />
             }
             label="Romance"
           />

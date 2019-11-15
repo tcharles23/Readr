@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 import { useGestureResponder } from 'react-gesture-responder';
 import { Heart } from 'react-feather';
@@ -30,11 +28,8 @@ function Slider(props) {
     },
     onRelease: ({ delta }) => {
       if (shouldLike(delta[0])) {
-        // handle likes
-        console.log('LIKE!');
         handleYesClick();
       } else if (delta[0] > 200) {
-        console.log('DISLIKE');
         handleNoClick();
       }
 
@@ -74,13 +69,13 @@ function Slider(props) {
       >
         <animated.div
           style={{
-            transform: heartPosition,
+            transform: heartPosition
           }}
         >
           <Heart
-            size={28}
+            size={60}
             style={{
-              color: 'white',
+              color: '#374047',
               fill: isLiking ? 'white' : 'transparent',
               transform: isLiking ? 'scale(0.85)' : 'scale(1)',
               transition: 'transform 0.3s ease',
@@ -91,7 +86,7 @@ function Slider(props) {
       <animated.div
         {...bind}
         style={{
-          transform: x.interpolate((x) => `translateX(${addResistance(x)}px)`),
+          transform: x.interpolate(x => `translateX(${addResistance(x)}px)`)
         }}
         className="sliding-pane"
       >
