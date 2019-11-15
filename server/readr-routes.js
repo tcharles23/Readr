@@ -59,6 +59,7 @@ router.get('/suggestion', (req, res) => {
 
 // Endpoint to return list of followers
 router.get('/followers', (req, res) => {
+  console.log(req.user, 'folllowerrs');
   const { user } = req;
   dbHelpers.getFollowers(user.id)
     .then((followers) => {
@@ -68,6 +69,7 @@ router.get('/followers', (req, res) => {
 
 // Endpoint to return list of users you are following and their id#
 router.get('/following', (req, res) => {
+  console.log(req.userName, 'followinnng');
   const { user } = req;
   dbHelpers.getFollowing(user.id)
     .then((following) => {
@@ -77,6 +79,7 @@ router.get('/following', (req, res) => {
 
 // Endpoint to follow a user
 router.post('/follow/:followerID', (req, res) => {
+  console.log(req, ' user follow me');
   const { user } = req;
   dbHelpers.followUser(user.id, req.params.followerID)
     .then(() => {

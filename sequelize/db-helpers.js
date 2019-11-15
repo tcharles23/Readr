@@ -116,49 +116,55 @@ const verifyUserBook = (userID, isbn) => models.userBook.findOne({
 
 // ----------FOLLOWERS----------
 // Follow user
-const followUser = (userID, followerID) => models.UserFollower.create({
+const followUser = (userID, followerID, userName) => models.UserFollower.create({
   userID,
   followerID,
+  userName,
 });
 
-const unfollowUser = (userID, followerID) => models.UserFollower.destroy({
+const unfollowUser = (userID, followerID, userName) => models.UserFollower.destroy({
   where: {
     userID,
     followerID,
+    userName,
   },
 });
 
 // Get list of users you are following
-const getFollowing = (userID) => models.UserFollower.findAll({
-  attributes: ['followerID'],
+const getFollowing = (userID, userName) => models.UserFollower.findAll({
+  attributes: ['followerID', 'followerName'],
   where: {
     userID,
+    userName,
   },
 })
   .then((connectionData) => connectionData.map(
     (connectionInfo) => connectionInfo.dataValues.followerID,
   ))
-  .then((userIDs) => models.User.findAll({
+  .then((userIDs, userNames) => models.User.findAll({
     attributes: ['username', 'id'],
     where: {
       id: userIDs,
+      userName: userNames,
     },
   }));
 
 // Get list of users following you
-const getFollowers = (userID) => models.UserFollower.findAll({
-  attributes: ['userID'],
+const getFollowers = (userID, userName) => models.UserFollower.findAll({
+  attributes: ['userID', 'userName'],
   where: {
     followerID: userID,
+    followerName: userName,
   },
 })
   .then((connectionData) => connectionData.map(
-    (connectionInfo) => connectionInfo.dataValues.userID,
+    (connectionInfo) => connectionInfo.dataValues.userName,
   ))
-  .then((userIDs) => models.User.findAll({
+  .then((userIDs, userName) => models.User.findAll({
     attributes: ['username', 'id'],
     where: {
       id: userIDs,
+      userName,
     },
   }));
 
