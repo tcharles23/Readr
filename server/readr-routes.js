@@ -109,6 +109,7 @@ router.post('/preferences', (req, res) => {
       .then(() => {
         res.status(201);
       })
+      // eslint-disable-next-line no-console
       .catch((error) => console.error(error));
   });
 });
