@@ -15,7 +15,14 @@ const useStyles = makeStyles({
     height: 520,
   },
   media: {
-    height: 300,
+    height: 360,
+  },
+  title: {
+    marginTop: -15,
+    marginBottom: -5,
+  },
+  description: {
+    marginBottom: -20,
   },
 });
 
@@ -36,23 +43,25 @@ const Book = props => {
           <CardContent>
             <Typography
               variant="h6"
+              className={classes.title}
               style={{
-                overflowX: "scroll",
+                overflowX: 'scroll',
                 maxHeight: 35,
-                textAlign: "left"
+                textAlign: 'left',
               }}
             >
               {title}
             </Typography>
             <Typography
-              style={{ textAlign: "left" }}
+              style={{ textAlign: 'left' }}
               variant="subtitle1"
             >
               {author}
             </Typography>
             <Typography
+              className={classes.description}
               variant="body2"
-              style={{ height: 60, overflow: "auto", textAlign: "left" }}
+              style={{ height: 60, overflow: 'auto', textAlign: 'left' }}
               color="textSecondary"
             >
               {description}
