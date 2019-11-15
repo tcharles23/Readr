@@ -4,6 +4,7 @@
   "description": "Open source book suggestion",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:client-dev",
     "build:client-dev": "webpack --config webpack.config.js --mode development --watch",
     "build:client": "webpack --config webpack.config.js --mode development",
     "start": "node server/index.js",

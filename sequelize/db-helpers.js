@@ -46,7 +46,7 @@ const updatePreferences = (userID, subject, toRead) => models.UserPreference.fin
 })
   .then((subjectWeight) => {
     let newWeight;
-    if (toRead) {
+    if (toRead === true) {
       newWeight = subjectWeight.dataValues[subject] + defaultUpdate;
     } else if (subjectWeight.dataValues[subject] <= 0.2) {
       newWeight = subjectWeight.dataValues[subject];

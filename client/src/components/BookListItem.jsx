@@ -75,12 +75,11 @@ function BookListItem(props) {
           </Button>
         </Link>
       );
-      default: return 'Sorry, no preview available';
+      default: return null;
     }
   };
 
   const buyNow = (book) => {
-    console.log(book.buyLink);
     return book.buyLink ? (
       <Grid item>
         <Button
