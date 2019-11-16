@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -7,10 +8,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Checkbox from '@material-ui/core/Checkbox';
+import { Checkbox, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SelectGenre({ user }) {
+export default function SelectGenre(props) {
+  let history = useHistory();
+  const { user } = props;
   const classes = useStyles();
   const [state, setState] = React.useState({
     comedy: false,
@@ -36,7 +39,7 @@ export default function SelectGenre({ user }) {
     romance: false,
   });
 
-  const handleChange = (name) => (event) => {
+  const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked });
   };
 
@@ -44,46 +47,80 @@ export default function SelectGenre({ user }) {
     const preferences = state;
     preferences.user = user;
     axios.post('/readr/preferences', preferences)
-      .catch((error) => {
-        console.error('something went wrong', error);
+      .then(() => {
+        history.push('/suggestion');
+      })
+      .catch(() => {
+        history.push('/suggestion');
       });
   };
 
   const {
-    comedy, thriller, fantasy, romance,
+    comedy,
+    thriller,
+    fantasy,
+    romance,
   } = state;
 
   return (
-    <div className={classes.root}>
+    <Grid
+      container
+      className={classes.root}
+      justify="center"
+    >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Pick Interested Genre</FormLabel>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={comedy} onChange={handleChange('comedy')} value="comedy" />}
+            control={(
+              <Checkbox
+                checked={comedy}
+                onChange={handleChange('comedy')}
+                value="comedy"
+              />
+            )}
             label="Comedy"
           />
           <FormControlLabel
-            control={<Checkbox checked={thriller} onChange={handleChange('thriller')} value="thriller" />}
+            control={(
+              <Checkbox
+                checked={thriller}
+                onChange={handleChange('thriller')}
+                value="thriller"
+              />
+            )}
             label="Thriller"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={fantasy} onChange={handleChange('fantasy')} value="fantasy" />
-            }
+            control={(
+              <Checkbox
+                checked={fantasy}
+                onChange={handleChange('fantasy')}
+                value="fantasy"
+              />
+            )}
             label="Fantasy"
           />
           <FormControlLabel
-            control={
-              <Checkbox checked={romance} onChange={handleChange('romance')} value="romance" />
-            }
+            control={(
+              <Checkbox
+                checked={romance}
+                onChange={handleChange('romance')}
+                value="romance"
+              />
+            )}
             label="Romance"
           />
-          <Button variant="contained" className={classes.button} onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
         </FormGroup>
         <FormHelperText>Choose Wisely!</FormHelperText>
       </FormControl>
-    </div>
+    </Grid>
   );
 }
