@@ -102,16 +102,14 @@ router.post('/preferences', (req, res) => {
 
   // const { userID, genre, toRead } = req.body;
 
-  return genres.forEach((genre) => {
+  genres.forEach((genre) => {
     const toRead = req.body[genre];
 
     dbHelpers.updatePreferences(userID, genre, toRead)
-      .then(() => {
-        res.status(201);
-      })
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error));
   });
+  res.send(201);
 });
 
 router.post('/interest', (req, res) => {
