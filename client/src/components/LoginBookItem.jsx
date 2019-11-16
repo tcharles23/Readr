@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  paper2: {
+    // padding: theme.spacing(2),
+    borderRadius: '20px',
+    margin: 'auto',
+    maxWidth: 500,
+  },
   paper: {
     padding: theme.spacing(2),
     // borderRadius: '100px',
@@ -130,7 +136,7 @@ function LoginBookItem(props) {
               labelPlacement="end"
             />
             <Box display={checked ? 'block' : 'none'}>
-              <Paper classes={classes.paper} style={{ borderRadius: '20px' }}>
+              <Paper className={classes.paper2}>
                 <Typography variant="body2" style={{ height: 105, overflow: 'auto', boxShadow: '1px 1px 8px grey', padding: '10px', borderRadius: '20px' }}>
                   {book.description}
                 </Typography>
