@@ -93,19 +93,19 @@ function LoginBookItem(props) {
     }
   };
 
-  // const buyNow = (book) => {
-  //   return book.buyLink ? (
-  //     <Button
-  //       target="_blank"
-  //       href={book.buyLink}
-  //       variant="contained"
-  //       color="secondary"
-  //       size="small"
-  //     >Buy Now
-  //     </Button>
-  //   )
-  //     : null;
-  // };
+  const buyNow = (book) => {
+    return book.buyLink ? (
+      <Button
+        target="_blank"
+        href={book.buyLink}
+        variant="contained"
+        color="secondary"
+        size="small"
+      >Buy Now
+      </Button>
+    )
+      : null;
+  };
 
   const toggleCheckedItem = () => {
     setChecked(!checked);
@@ -135,6 +135,7 @@ function LoginBookItem(props) {
               label="Description"
               labelPlacement="end"
             />
+            {/* {buyNow(book)} */}
             <Box display={checked ? 'block' : 'none'}>
               <Paper className={classes.paper2}>
                 <Typography variant="body2" style={{ height: 105, overflow: 'auto', boxShadow: '1px 1px 8px grey', padding: '10px', borderRadius: '20px' }}>
@@ -143,9 +144,6 @@ function LoginBookItem(props) {
               </Paper>
             </Box>
           </Grid>
-          {/* <Grid item>
-            {buyNow(book)}
-          </Grid> */}
         </Grid>
       </Grid>
       <Grid container spacing={2} />

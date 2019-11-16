@@ -16,7 +16,7 @@ const bookList = [
   {
     author: 'Stephen King',
     availability: 'borrow_unavailable',
-    buyLink: null,
+    buyLink: 'https://play.google.com/store/audiobooks/details?id=AQAAAICCN2u3-M&gl=US&hl=en-US&source=productsearch&utm_source=HA&utm_medium=SEM&utm_campaign=PLA&pcampaignid=MKT-DR-na-us-1000189-Med-hasem-bk-Evergreen-Nov1417-PLA-audiobookspla*AQAAAICCN2u3~M&gclid=Cj0KCQiA2b7uBRDsARIsAEE9XpGHyAA1kd4Lej8iTj95iLpB_TR7LUtDD84PGzmSkRcCkiQa0FP-JAsaAsDEEALw_wcB&gclsrc=aw.ds',
     coverURL: 'http://books.google.com/books/content?id=RYu_CwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     createdAt: '2019-11-16T17:23:32.332Z',
     description: `In 1978, petty criminal Morris Bellamy robs and murders acclaimed author John Rothstein for ending his famous Runner trilogy on an unsatisfactory note. Prior to the murder, Rothstein had been in reclusive retirement, never publishing another novel but continuing to write in private. More important than the money he steals, Morris covets Rothstein's invaluable notebooks, which contain two books which properly finish the arc of the Runner series.After the murder, Morris hides Rothstein's cash and Moleskine notebooks in a trunk buried near a creek behind his childhood home. Before he can read the manuscripts, Morris is sentenced to life in prison for another crime. Rothstein's murder is never solved.
