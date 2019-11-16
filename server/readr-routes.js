@@ -105,16 +105,14 @@ router.post('/preferences', (req, res) => {
 
   // const { userID, genre, toRead } = req.body;
 
-  return genres.forEach((genre) => {
+  genres.forEach((genre) => {
     const toRead = req.body[genre];
 
     dbHelpers.updatePreferences(userID, genre, toRead)
-      .then(() => {
-        res.status(201);
-      })
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error));
   });
+  res.sendStatus(201);
 });
 
 router.post('/interest', (req, res) => {
@@ -123,7 +121,7 @@ router.post('/interest', (req, res) => {
     .then(() => dbHelpers.findBook(isbn))
     .then((bookData) => dbHelpers.updatePreferences(userID, bookData.genre, toRead))
     .then(() => {
-      res.status(200).send('book added to user list');
+      res.sendStatus(201);
     })
     .catch((error) => console.error(error));
 });
@@ -147,4 +145,14 @@ router.post('/booklist', (req, res) => {
     })
     .catch((error) => console.error(error));
 });
+
+// reset user genre preferences
+router.patch('/reset', (req, res) => {
+  const { id } = req.body
+  dbHelpers.createPreferences(id)
+    .then(() => {
+      res.sendStatus(204);
+    });
+});
+
 module.exports = router;

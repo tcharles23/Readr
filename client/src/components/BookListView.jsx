@@ -75,8 +75,8 @@ class BookListView extends React.Component {
         ) : (
           <div>
             <Grid container spacing={2}>
-              {Object.keys(bookList).map((book) => (
-                <Grid item xs={12} sm={12} md={6}>
+              {Object.keys(bookList).map((book, i) => (
+                <Grid key={i} item xs={12} sm={12} md={6}>
                   <BookListItem
                     book={bookList[book]}
                     key={book.isbn}
